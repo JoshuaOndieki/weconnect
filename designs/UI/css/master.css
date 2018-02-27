@@ -53,16 +53,22 @@ section{
 
 #intro{
     width: 64%;
-    height: 95%;
+    height: 100%;
     display: inline-block;
 
 }
 
 #intro article{
-    background-color: snow;
-    margin: 3%;
-    height: 28%;
+    background-color: #fffafac7;
+    margin: 2%;
+    height: 29%;
     width: 80%;
+    text-align: center;
+    line-height: inherit;
+}
+
+#intro article h1{
+    color: forestgreen;
 }
 
 .signupbtn{
