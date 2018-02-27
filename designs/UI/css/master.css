@@ -42,7 +42,51 @@ nav{
     float: left!important;
 }
 
+.content{
+    width: 100%;
+    height: 600px;
+    justify-content: space-between;
+}
 
+section{
+}
+
+#intro{
+    width: 64%;
+    height: 95%;
+    display: inline-block;
+
+}
+
+#intro article{
+    background-color: snow;
+    margin: 3%;
+    height: 28%;
+    width: 80%;
+}
+
+.signupbtn{
+    background-color: magenta!important;
+    display: table;
+    margin: 0 auto;
+}
+
+#signup-form>h3{
+    text-align: center;
+}
+
+#signup-form{
+    width: 28%;
+    height: auto;
+    display: inline-block;
+    float: right;
+    margin: 3%;
+    border: 1px solid teal;
+    background-color: #ffffff;
+    color: #999999;
+    line-height: inherit;
+
+}
 
 
 footer{
