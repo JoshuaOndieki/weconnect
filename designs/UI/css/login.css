@@ -1,0 +1,20 @@
+.loginbtn{
+    display: table;
+    margin: 0 auto;
+}
+
+#login-form>h3{
+    text-align: center;
+}
+
+#login-form{
+    width: 28%;
+    height: auto;
+    border: 1px solid teal;
+    background-color: #ffffff;
+    color: #999999;
+    line-height: inherit;
+    display: table;
+    margin: 0 auto;
+
+}
