@@ -22,7 +22,11 @@ main{
     text-align: center;
 }
 
-.business{
+.row{
     clear: both;
     width: 98%;
+}
+
+.review-item{
+    text-align: left;
 }
