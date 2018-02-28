@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>WeConnect</title>
+        <link rel="icon" sizes="192x192" href="media/logo.png">
+        <link rel="stylesheet" href="css/materialize.min.css">
+        <link rel="stylesheet" href="css/master.css">
+        <link rel="stylesheet" href="css/userhome.css">
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <script src="js/jquery-3.3.1.min.js"></script>
+        <script src="js/materialize.min.js"></script>
+        <script src="js/index.js"></script>
+    </head>
+    <body id="homepage">
+        <header>
+            <a href="home.html">
+                <div class="logo">
+                    <img src="media/logo.png" alt="Logo">
+                </div>
+            </a>
+        </header>
+        <nav>
+            <div class="nav-wrapper">
+              <form id="search-form">
+                <div class="input-field">
+                  <input id="search" type="search" placeholder="Search" required>
+                  <label class="label-icon" for="search"><i class="material-icons"></i></label>
+                  <i class="material-icons">close</i>
+                </div>
+              </form>
+              <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
+              <ul class="right hide-on-med-and-down">
+                 <li><a href="topreviews.html">Top Reviews</a></li>
+                 <li><a href="blog.html">Blog</a></li>
+                 <li><a href="discover.html">Discover</a></li>
+               </ul>
+               <ul class="home side-nav" id="mobile-demo">
+                 <li><a href="topreviews.html">Top Reviews</a></li>
+                 <li><a href="blog.html">Blog</a></li>
+                 <li><a href="discover.html">Discover</a></li>
+               </ul>
+               <!-- Dropdown Trigger -->
+               <a class='dropdown-button btn' href='#' data-activates='dropdown1'>User X<i class ="material-icons right">arrow_drop_down</i></a>
+
+               <!-- Dropdown Structure -->
+               <ul id='dropdown1' class='dropdown-content'>
+                 <li><a href="#!">action</a></li>
+                 <li><a href="#!">action</a></li>
+                 <li class="divider"></li>
+                 <li><a href="#!">logout</a></li>
+               </ul>
+            </div>
+        </nav>
+        <main>
+            <section id="userprofile">
+                <div class="row">
+                  <div class="">
+                    <div class="card blue-grey darken-1">
+                      <div class="card-content white-text">
+                        <span class="card-title"><i class="material-icons">account_circle</i>User's Name</span>
+                      </div>
+                      <div class="card-action">
+                        <div class="red badge chip">
+                            <i class="center material-icons orange">star</i> 1,001 Reviewed
+                        </div>
+                        <div class="teal badge chip">
+                            <i class="center material-icons blue">business_center</i> 2 businesses
+                        </div>
+                        <div class="grey badge chip">
+                            <i class="center material-icons">add_circle_outline</i> Joined Dec 2016
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="ownedbusiness card">
+                    <span class="card-description">Businesses you manage</span>
+                    <a class="btn-floating btn-large waves-effect waves-light blue right"><i class="material-icons">add</i></a>
+                    <div class="business row">
+                      <div class="">
+                        <div class="card blue-grey darken-1">
+                          <div class="card-content white-text">
+                              <!-- Dropdown Trigger -->
+                              <a class='dropdown-button btn top right' href='#' data-activates='more_business'><i class="material-icons">more_vert</i></a>
+
+                              <!-- Dropdown Structure -->
+                              <ul id='more_business' class='dropdown-content'>
+                                <li><a href="#!">Edit</a></li>
+                                <li class="divider"></li>
+                                <li><a href="#!" class="red">Delete</a></li>
+                              </ul>
+                            <span class="card-title">Business name</span>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc maximus, nulla ut commodo sagittis, sapien dui mattis dui, non pulvinar lorem felis nec erat</p>
+                          </div>
+                              <div class="card-action">
+                                <div class="red badge chip">
+                                    <i class="center material-icons orange">star</i> 9,999 Reviews
+                                </div>
+                                <div class="teal badge chip">
+                                    <i class="center material-icons blue">location_on</i> Nairobi, KE
+                                </div>
+                                <div class="grey badge chip">
+                                    <i class="center material-icons">sort</i> Some category
+                                </div>
+                                <i class="material-icons bottom right">share</i>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="business row">
+                      <div class="">
+                        <div class="card blue-grey darken-1">
+                          <div class="card-content white-text">
+                              <!-- Dropdown Trigger -->
+                              <a class='dropdown-button btn top right' href='#' data-activates='more_business'><i class="material-icons">more_vert</i></a>
+
+                              <!-- Dropdown Structure -->
+                              <ul id='more_business' class='dropdown-content'>
+                                <li><a href="#!">Edit</a></li>
+                                <li class="divider"></li>
+                                <li><a href="#!" class="red">Delete</a></li>
+                              </ul>
+                            <span class="card-title">Business name</span>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc maximus, nulla ut commodo sagittis, sapien dui mattis dui, non pulvinar lorem felis nec erat</p>
+                          </div>
+                              <div class="card-action">
+                                <div class="red badge chip">
+                                    <i class="center material-icons orange">star</i> 99,999 Reviews
+                                </div>
+                                <div class="teal badge chip">
+                                    <i class="center material-icons blue">location_on</i> Konza, KE
+                                </div>
+                                <div class="grey badge chip">
+                                    <i class="center material-icons">sort</i> Some category
+                                </div>
+                                <i class="material-icons bottom right">share</i>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="feed" class="card">
+                <article class="review">
+
+                </article>
+            </section>
+        </main>
+        <footer class="page-footer">
+          <div class="container">
+            <div class="row">
+              <div class="col l6 s12">
+                <h5 class="white-text">WeConnect You Review It!</h5>
+                <p class="grey-text text-lighten-4">This project was made with love by <a href="https://www.github.com/JoshuaOndieki/">Joshua Ondieki</a>. With the help of <a href="https://www.andela.com/">Andela</a></p>
+              </div>
+              <div class="col l4 offset-l2 s12">
+                <h5 class="white-text">Links</h5>
+                <ul>
+                  <li><a class="grey-text text-lighten-3" href="terms.html">Terms & Conditions</a></li>
+                  <li><a class="grey-text text-lighten-3" href="faqs.html">FAQs</a></li>
+                  <li><a class="grey-text text-lighten-3" href="support.html">Support</a></li>
+                  <li><a class="grey-text text-lighten-3" href="#">API DOCS</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="footer-copyright">
+            <div class="container">
+            &copy; OJ&middot;2018
+            <a class="grey-text text-lighten-4 right" href="mailto:joshuaondieki8@gmail.com">Wanna get in touch with the developer?</a>
+            </div>
+          </div>
+        </footer>
+    </body>
+</html>
