@@ -30,3 +30,14 @@ main{
 .review-item{
     text-align: left;
 }
+
+
+.modal {
+z-index: 999;
+position: absolute;
+
+}
+
+.modal-form-row {
+margin-bottom: 0px;
+}
