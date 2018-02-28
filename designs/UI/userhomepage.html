@@ -51,7 +51,7 @@
     </nav>
     <main>
         <!-- Modal Structure -->
-        <div id="addmodal" class="modal">
+        <div id="addmodal" class="modal modal-fixed-footer">
             <div class="modal-content">
                 <h4>Add a business</h4>
                 <p>Please provide the info required in order to add your business to the world of reviews.</p>
@@ -79,6 +79,37 @@
             <div class="modal-footer">
                 <a href="#!" class="modal-action modal-close waves-effect waves-green red btn-flat left">DISCARD</a>
                 <a href="#!" class="modal-action modal-close waves-effect waves-green blue btn-flat">ADD</a>
+            </div>
+        </div>
+        <!-- Modal Structure -->
+        <div id="editmodal" class="modal modal-fixed-footer">
+            <div class="modal-content">
+                <h4>Edit your business</h4>
+                <p>Make changes to your business data</p>
+                <form class="col s12">
+                    <div class="row">
+                        <div class="input-field col s6">
+                            <input placeholder="Business name" id="business-name" type="text" class="validate" required>
+                            <label for="business-name">Business name</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s6">
+                            <input placeholder="Business Location" id="business-location" type="text" class="validate" required>
+                            <label for="business-location">Business Location</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s6">
+                            <input placeholder="Business category" id="business-category" type="text" class="validate" required>
+                            <label for="business-name">Business Category</label>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <a href="#!" class="modal-action modal-close waves-effect waves-green red btn-flat left">DISCARD</a>
+                <a href="#!" class="modal-action modal-close waves-effect waves-green blue btn-flat">UPDATE</a>
             </div>
         </div>
         <section id="userprofile">
@@ -117,9 +148,9 @@
 
                                 <!-- Dropdown Structure -->
                                 <ul id='nrb_business' class='dropdown-content'>
-                                    <li><a href="#!">Edit</a></li>
+                                    <li><a href="#editmodal" class="modal-trigger">Edit</a></li>
                                     <li class="divider"></li>
-                                    <li><a href="#!" class="red">Delete</a></li>
+                                    <li><a href="#!" class="">Delete</a></li>
                                 </ul>
                                 <span class="card-title">Business name</span>
                                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc maximus, nulla ut commodo sagittis, sapien dui mattis dui, non pulvinar lorem felis nec erat</p>
@@ -149,9 +180,9 @@
 
                                 <!-- Dropdown Structure -->
                                 <ul id='konza_business' class='dropdown-content'>
-                                    <li><a href="#!">Edit</a></li>
+                                    <li><a href="#editmodal" class="modal-trigger">Edit</a></li>
                                     <li class="divider"></li>
-                                    <li><a href="#!" class="red">Delete</a></li>
+                                    <li><a href="#!" class="">Delete</a></li>
                                 </ul>
                                 <span class="card-title">Business name</span>
                                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc maximus, nulla ut commodo sagittis, sapien dui mattis dui, non pulvinar lorem felis nec erat</p>
