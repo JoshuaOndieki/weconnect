@@ -12,7 +12,7 @@ The project defination can be found [here](https://docs.google.com/document/d/1i
 ## Installation
 
 (Currently) This project does not need any other installation apart from a browser.
-The UIs can be viewed and tested at [joshuaondieki.github.io](https://www.joshuaondieki.github.io/)
+The UIs can be viewed and tested at [joshuaondieki.github.io](https://joshuaondieki.github.io/)
 Alternatively, clone this repo and test the UIs locally.
 
 
