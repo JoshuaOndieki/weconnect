@@ -1,6 +1,6 @@
 html, body{
-    width: 100%;
     position: absolute;
+    width: 100%;
 }
 
 #homepage{
@@ -9,98 +9,92 @@ html, body{
 }
 
 header{
-    height: 20%;
-    width: 30%;
-    margin-top: 0.5%;
-    margin-bottom: 1%;
     display: inline-block;
+    height: 20%;
+    margin-bottom: 1%;
     margin-left: 0.2%;
+    margin-top: 0.5%;
+    width: 30%;
 }
 
 .logo img{
-    width: 150px;
-    height: 150px;
     cursor: pointer;
+    height: 150px;
+    width: 150px;
 }
 
 
 nav{
-    display: inline-block;
-    width: 60%;
-    float: right;
+    margin-bottom: 1%;
     margin-right: 0.2%;
     margin-top: 0.5%;
-    margin-bottom: 1%;
+    width: 60%;
+    float: right;
 }
 
 #search-form{
-    width: 40%;
     display: inline-block;
+    width: 40%;
 }
 
 .home side-nav{
-    float: left!important;
+    float: left;
 }
 
 .content{
-    width: 100%;
     height: 600px;
     justify-content: space-between;
+    width: 100%;
 }
 
-section{
-}
-
-#intro{
-    width: 64%;
-    height: 100%;
+.intro{
     display: inline-block;
+    height: 100%;
+    width: 64%;
 
 }
 
-#intro article{
+.intro article{
     background-color: #fffafac7;
-    margin: 2%;
     height: 29%;
-    width: 80%;
-    text-align: center;
     line-height: inherit;
+    margin: 2%;
+    text-align: center;
+    width: 80%;
 }
 
-#intro article h1{
+h1{
     color: forestgreen;
 }
 
 .signupbtn{
-    background-color: magenta!important;
+    background-color: magenta;
     display: table;
     margin: 0 auto;
 }
 
-#signup-form>h3{
+h3{
     text-align: center;
 }
 
-#signup-form{
-    width: 28%;
-    height: auto;
-    display: inline-block;
-    float: right;
-    margin: 3%;
-    border: 1px solid teal;
+.signup-form{
     background-color: #ffffff;
     color: #999999;
+    display: inline-block;
+    height: auto;
     line-height: inherit;
+    margin: 3%;
+    width: 28%;
 
 }
 
 
 footer{
-    bottom: 0px;
-    width: 99.6%;
+    background-color: #ee6e738a;
+    bottom: 0;
     margin-left: 0.2%;
     margin-top: 3%;
-    background-color: #ee6e738a!important;
+    width: 99.6%;
 }
 
 
