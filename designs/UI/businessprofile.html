@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>WeConnect</title>
+    <link rel="icon" sizes="192x192" href="media/logo.png">
+    <link rel="stylesheet" href="css/materialize.min.css">
+    <link rel="stylesheet" href="css/master.css">
+    <link rel="stylesheet" href="css/userhome.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+<body id="homepage">
+    <header>
+        <a href="index.html">
+            <div class="logo">
+                <img src="media/logo.png" alt="Logo">
+            </div>
+        </a>
+    </header>
+    <nav>
+        <div class="nav-wrapper">
+            <form id="search-form">
+                <div class="input-field">
+                    <input id="search" type="search" placeholder="Search" required>
+                    <label class="label-icon" for="search"><i class="material-icons"></i></label>
+                    <i class="material-icons">close</i>
+                </div>
+            </form>
+            <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
+            <ul class="right hide-on-med-and-down">
+                <li><a href="topreviews.html">Top Reviews</a></li>
+                <li><a href="https://medium.com/@joshuaondieki">Blog</a></li>
+                <li><a href="businesslisting.html">Discover</a></li>
+            </ul>
+            <ul class="home side-nav" id="mobile-demo">
+                <li><a href="topreviews.html">Top Reviews</a></li>
+                <li><a href="https://medium.com/@joshuaondieki">Blog</a></li>
+                <li><a href="businesslisting.html">Discover</a></li>
+            </ul>
+            <!-- Dropdown Trigger -->
+            <a class='dropdown-button btn' href='#' data-activates='dropdown1'>User X<i class ="material-icons right">arrow_drop_down</i></a>
+
+            <!-- Dropdown Structure -->
+            <ul id='dropdown1' class='dropdown-content'>
+                <li><a href="#!">action</a></li>
+                <li><a href="#!">action</a></li>
+                <li class="divider"></li>
+                <li><a href="index.html">logout</a></li>
+            </ul>
+        </div>
+    </nav>
+    <main>
+        <section id="userprofile">
+            <div class="row">
+                <div class="">
+                    <div class="card blue-grey darken-1">
+                        <div class="card-content white-text">
+                            <span class="card-title">Business Name</span>
+                            <i class="material-icons">star</i>
+                            <i class="material-icons">star</i>
+                            <i class="material-icons">star</i>
+                            <i class="material-icons">star_half</i>
+                            <i class="material-icons">star_border</i>
+                        </div>
+                        <div class="card-action">
+                            <div class="red badge chip">
+                                <i class="center material-icons orange">star</i> 9,999 Reviews
+                            </div>
+                            <div class="teal badge chip">
+                                <i class="center material-icons blue">location_on</i> Nairobi, KE
+                            </div>
+                            <div class="grey badge chip">
+                                <i class="center material-icons">sort</i> Some category
+                            </div>
+                            <i class="material-icons bottom right">share</i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="feed" class="card">
+            <div class="createreview card row">
+                <div class="row">
+                  <form class="col s12">
+                    <div class="row">
+                      <div class="input-field col s6">
+                        <i class="material-icons prefix">mode_edit</i>
+                        <textarea id="icon_prefix2" class="materialize-textarea" required></textarea>
+                        <label for="icon_prefix2">Write a review for this business</label>
+                      </div>
+                      <div class="range-field input field col s6">
+                          <label for="stars">Give the business a star rating between 1.0 and 5.0</label>
+                        <input type="range" id="stars" min="1.0" max="5.0" required/>
+                    </div>
+                    </div>
+                    <button class="btn waves-effect waves-light bottom right" type="submit" name="action">Submit
+                      <i class="material-icons right">send</i>
+                    </button>
+                  </form>
+                </div>
+            </div>
+            <article class="review">
+                <div class="row">
+                    <div class="">
+                        <div class="card blue-grey darken-1">
+                            <i class="material-icons large" style="float: left;">account_circle</i>
+                            <div class="card-content white-text">
+                                <span class="review-item card-title">User Y</span>
+                                <div class="">
+                                    <i class="material-icons">star</i>
+                                    <i class="material-icons">star</i>
+                                    <i class="material-icons">star_half</i>
+                                    <i class="material-icons">star_border</i>
+                                    <i class="material-icons">star_border</i>
+                                </div>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc maximus, nulla ut commodo sagittis, sapien dui mattis dui, non pulvinar lorem felis nec erat</p>
+                            </div>
+                            <div class="card-action">
+                                <label for="" class="white-text bottom right">Just now</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </article>
+            <article class="review">
+                <div class="row">
+                    <div class="">
+                        <div class="card blue-grey darken-1">
+                            <i class="material-icons large" style="float: left;">account_circle</i>
+                            <div class="card-content white-text">
+                                <span class="review-item card-title">User Y</span>
+                                <div class="">
+                                    <i class="material-icons">star</i>
+                                    <i class="material-icons">star</i>
+                                    <i class="material-icons">star_half</i>
+                                    <i class="material-icons">star_border</i>
+                                    <i class="material-icons">star_border</i>
+                                </div>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc maximus, nulla ut commodo sagittis, sapien dui mattis dui, non pulvinar lorem felis nec erat</p>
+                            </div>
+                            <div class="card-action">
+                                <label for="" class="white-text bottom right">Just now</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </article>
+            <article class="review">
+                <div class="row">
+                    <div class="">
+                        <div class="card blue-grey darken-1">
+                            <i class="material-icons large" style="float: left;">account_circle</i>
+                            <div class="card-content white-text">
+                                <span class="review-item card-title">User Y</span>
+                                <div class="">
+                                    <i class="material-icons">star</i>
+                                    <i class="material-icons">star</i>
+                                    <i class="material-icons">star_half</i>
+                                    <i class="material-icons">star_border</i>
+                                    <i class="material-icons">star_border</i>
+                                </div>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc maximus, nulla ut commodo sagittis, sapien dui mattis dui, non pulvinar lorem felis nec erat</p>
+                            </div>
+                            <div class="card-action">
+                                <label for="" class="white-text bottom right">Just now</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </article>
+            <article class="review">
+                <div class="row">
+                    <div class="">
+                        <div class="card blue-grey darken-1">
+                            <i class="material-icons large" style="float: left;">account_circle</i>
+                            <div class="card-content white-text">
+                                <span class="review-item card-title">User Y</span>
+                                <div class="">
+                                    <i class="material-icons">star</i>
+                                    <i class="material-icons">star</i>
+                                    <i class="material-icons">star_half</i>
+                                    <i class="material-icons">star_border</i>
+                                    <i class="material-icons">star_border</i>
+                                </div>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc maximus, nulla ut commodo sagittis, sapien dui mattis dui, non pulvinar lorem felis nec erat</p>
+                            </div>
+                            <div class="card-action">
+                                <label for="" class="white-text bottom right">Just now</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </article>
+            <article class="review">
+                <div class="row">
+                    <div class="">
+                        <div class="card blue-grey darken-1">
+                            <i class="material-icons large" style="float: left;">account_circle</i>
+                            <div class="card-content white-text">
+                                <span class="review-item card-title">User Y</span>
+                                <div class="">
+                                    <i class="material-icons">star</i>
+                                    <i class="material-icons">star</i>
+                                    <i class="material-icons">star_half</i>
+                                    <i class="material-icons">star_border</i>
+                                    <i class="material-icons">star_border</i>
+                                </div>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc maximus, nulla ut commodo sagittis, sapien dui mattis dui, non pulvinar lorem felis nec erat</p>
+                            </div>
+                            <div class="card-action">
+                                <label for="" class="white-text bottom right">Just now</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </article>
+            <article class="review">
+                <div class="row">
+                    <div class="">
+                        <div class="card blue-grey darken-1">
+                            <i class="material-icons large" style="float: left;">account_circle</i>
+                            <div class="card-content white-text">
+                                <span class="review-item card-title">User Y</span>
+                                <div class="">
+                                    <i class="material-icons">star</i>
+                                    <i class="material-icons">star</i>
+                                    <i class="material-icons">star_half</i>
+                                    <i class="material-icons">star_border</i>
+                                    <i class="material-icons">star_border</i>
+                                </div>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc maximus, nulla ut commodo sagittis, sapien dui mattis dui, non pulvinar lorem felis nec erat</p>
+                            </div>
+                            <div class="card-action">
+                                <label for="" class="white-text bottom right">Just now</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </article>
+            <article class="review">
+                <div class="row">
+                    <div class="">
+                        <div class="card blue-grey darken-1">
+                            <i class="material-icons large" style="float: left;">account_circle</i>
+                            <div class="card-content white-text">
+                                <span class="review-item card-title">User Y</span>
+                                <div class="">
+                                    <i class="material-icons">star</i>
+                                    <i class="material-icons">star</i>
+                                    <i class="material-icons">star_half</i>
+                                    <i class="material-icons">star_border</i>
+                                    <i class="material-icons">star_border</i>
+                                </div>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc maximus, nulla ut commodo sagittis, sapien dui mattis dui, non pulvinar lorem felis nec erat</p>
+                            </div>
+                            <div class="card-action">
+                                <label for="" class="white-text bottom right">Just now</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </article>
+            <article class="review">
+                <div class="row">
+                    <div class="">
+                        <div class="card blue-grey darken-1">
+                            <i class="material-icons large" style="float: left;">account_circle</i>
+                            <div class="card-content white-text">
+                                <span class="review-item card-title">User Y</span>
+                                <div class="">
+                                    <i class="material-icons">star</i>
+                                    <i class="material-icons">star</i>
+                                    <i class="material-icons">star_half</i>
+                                    <i class="material-icons">star_border</i>
+                                    <i class="material-icons">star_border</i>
+                                </div>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc maximus, nulla ut commodo sagittis, sapien dui mattis dui, non pulvinar lorem felis nec erat</p>
+                            </div>
+                            <div class="card-action">
+                                <label for="" class="white-text bottom right">Just now</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </article>
+            <article class="review">
+                <div class="row">
+                    <div class="">
+                        <div class="card blue-grey darken-1">
+                            <i class="material-icons large" style="float: left;">account_circle</i>
+                            <div class="card-content white-text">
+                                <span class="review-item card-title">User Y</span>
+                                <div class="">
+                                    <i class="material-icons">star</i>
+                                    <i class="material-icons">star</i>
+                                    <i class="material-icons">star_half</i>
+                                    <i class="material-icons">star_border</i>
+                                    <i class="material-icons">star_border</i>
+                                </div>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc maximus, nulla ut commodo sagittis, sapien dui mattis dui, non pulvinar lorem felis nec erat</p>
+                            </div>
+                            <div class="card-action">
+                                <label for="" class="white-text bottom right">Just now</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </article>
+            <article class="review">
+                <div class="row">
+                    <div class="">
+                        <div class="card blue-grey darken-1">
+                            <i class="material-icons large" style="float: left;">account_circle</i>
+                            <div class="card-content white-text">
+                                <span class="review-item card-title">User Y</span>
+                                <div class="">
+                                    <i class="material-icons">star</i>
+                                    <i class="material-icons">star</i>
+                                    <i class="material-icons">star_half</i>
+                                    <i class="material-icons">star_border</i>
+                                    <i class="material-icons">star_border</i>
+                                </div>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc maximus, nulla ut commodo sagittis, sapien dui mattis dui, non pulvinar lorem felis nec erat</p>
+                            </div>
+                            <div class="card-action">
+                                <label for="" class="white-text bottom right">Just now</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </article>
+            <article class="review">
+                <div class="row">
+                    <div class="">
+                        <div class="card blue-grey darken-1">
+                            <i class="material-icons large" style="float: left;">account_circle</i>
+                            <div class="card-content white-text">
+                                <span class="review-item card-title">User Y</span>
+                                <div class="">
+                                    <i class="material-icons">star</i>
+                                    <i class="material-icons">star</i>
+                                    <i class="material-icons">star_half</i>
+                                    <i class="material-icons">star_border</i>
+                                    <i class="material-icons">star_border</i>
+                                </div>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc maximus, nulla ut commodo sagittis, sapien dui mattis dui, non pulvinar lorem felis nec erat</p>
+                            </div>
+                            <div class="card-action">
+                                <label for="" class="white-text bottom right">Just now</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </article>
+            <article class="review">
+                <div class="row">
+                    <div class="">
+                        <div class="card blue-grey darken-1">
+                            <i class="material-icons large" style="float: left;">account_circle</i>
+                            <div class="card-content white-text">
+                                <span class="review-item card-title">User Y</span>
+                                <div class="">
+                                    <i class="material-icons">star</i>
+                                    <i class="material-icons">star</i>
+                                    <i class="material-icons">star_half</i>
+                                    <i class="material-icons">star_border</i>
+                                    <i class="material-icons">star_border</i>
+                                </div>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc maximus, nulla ut commodo sagittis, sapien dui mattis dui, non pulvinar lorem felis nec erat</p>
+                            </div>
+                            <div class="card-action">
+                                <label for="" class="white-text bottom right">Just now</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </article>
+        </section>
+    </main>
+    <footer class="page-footer">
+        <div class="container">
+            <div class="row">
+                <div class="col l6 s12">
+                    <h5 class="white-text">WeConnect You Review It!</h5>
+                    <p class="grey-text text-lighten-4">This project was made with love by <a href="https://www.github.com/JoshuaOndieki/">Joshua Ondieki</a>. With the help of <a href="https://www.andela.com/">Andela</a></p>
+                </div>
+                <div class="col l4 offset-l2 s12">
+                    <h5 class="white-text">Links</h5>
+                    <ul>
+                        <li><a class="grey-text text-lighten-3" href="terms.html">Terms & Conditions</a></li>
+                        <li><a class="grey-text text-lighten-3" href="faqs.html">FAQs</a></li>
+                        <li><a class="grey-text text-lighten-3" href="support.html">Support</a></li>
+                        <li><a class="grey-text text-lighten-3" href="#">API DOCS</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="footer-copyright">
+            <div class="container">
+                &copy; OJ&middot;2018
+                <a class="grey-text text-lighten-4 right" href="mailto:joshuaondieki8@gmail.com">Wanna get in touch with the developer?</a>
+            </div>
+        </div>
+    </footer>
+
+
+    <script src="js/jquery-3.3.1.min.js"></script>
+    <script src="js/materialize.min.js"></script>
+    <script src="js/index.js"></script>
+</body>
+</html>

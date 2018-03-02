@@ -1,0 +1,103 @@
+html, body{
+    position: absolute;
+    width: 100%;
+}
+
+#homepage{
+    background-image: url("../media/coolblue.jpg");
+    background-size: cover;
+}
+
+header{
+    display: inline-block;
+    height: 20%;
+    margin-bottom: 1%;
+    margin-left: 0.2%;
+    margin-top: 0.5%;
+    width: 30%;
+}
+
+.logo img{
+    cursor: pointer;
+    height: 150px;
+    width: 150px;
+}
+
+
+nav{
+    margin-bottom: 1%;
+    margin-right: 0.2%;
+    margin-top: 0.5%;
+    width: 60%;
+    float: right;
+}
+
+#search-form{
+    display: inline-block;
+    width: 40%;
+}
+
+.home side-nav{
+    float: left;
+}
+
+.content{
+    height: 600px;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.intro{
+    display: inline-block;
+    height: 100%;
+    width: 64%;
+
+}
+
+.intro article{
+    background-color: #fffafac7;
+    height: 29%;
+    line-height: inherit;
+    margin: 2%;
+    text-align: center;
+    width: 80%;
+}
+
+h1{
+    color: forestgreen;
+}
+
+.signupbtn{
+    background-color: magenta;
+    display: table;
+    margin: 0 auto;
+}
+
+h3{
+    text-align: center;
+}
+
+.signup-form{
+    background-color: #ffffff;
+    color: #999999;
+    display: inline-block;
+    height: auto;
+    line-height: inherit;
+    margin: 3%;
+    width: 28%;
+
+}
+
+
+footer{
+    background-color: #ee6e738a;
+    bottom: 0;
+    margin-left: 0.2%;
+    margin-top: 3%;
+    width: 99.6%;
+}
+
+
+.createreview{
+    margin: 0 auto;
+}

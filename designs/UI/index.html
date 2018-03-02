@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>WeConnect</title>
+        <link rel="icon" sizes="192x192" href="media/logo.png">
+        <link rel="stylesheet" href="css/materialize.min.css">
+        <link rel="stylesheet" href="css/master.css">
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <script src="js/jquery-3.3.1.min.js"></script>
+        <script src="js/materialize.min.js"></script>
+        <script src="js/index.js"></script>
+    </head>
+    <body id="homepage">
+        <header>
+            <a href="index.html">
+                <div class="logo">
+                    <img src="media/logo.png" alt="Logo">
+                </div>
+            </a>
+        </header>
+        <nav>
+            <div class="nav-wrapper">
+                <form id="search-form">
+                    <div class="input-field">
+                          <input id="search" type="search" placeholder="Search" required>
+                          <label class="label-icon" for="search"><i class="material-icons">search</i></label>
+                          <i class="material-icons">close</i>
+                    </div>
+                </form>
+                <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
+                <ul class="right hide-on-med-and-down">
+                     <li><a href="topreviews.html">Top Reviews</a></li>
+                     <li><a href="https://medium.com/@joshuaondieki">Blog</a></li>
+                     <li><a href="businesslisting.html">Discover</a></li>
+                 </ul>
+                 <ul class="home side-nav" id="mobile-demo">
+                     <li><a href="topreviews.html">Top Reviews</a></li>
+                     <li><a href="https://medium.com/@joshuaondieki">Blog</a></li>
+                     <li><a href="businesslisting.html">Discover</a></li>
+                 </ul>
+                 <a href="login.html" class="waves-effect waves-light btn">Login</a>
+            </div>
+        </nav>
+        <div class="content">
+            <section class="intro">
+
+                <article class="row">
+                    <h1>WeConnect</h1>
+                    <p>WeConnect provides a platform that brings businesses and individuals together. This platform creates awareness for businesses and gives the users the ability to write reviews about the businesses they have interacted with.</p>
+                </article>
+                <article class="row" style="margin-left: 20%!important;">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc maximus, nulla ut commodo sagittis, sapien dui mattis dui, non pulvinar lorem felis nec erat
+                </article>
+                <article class="row">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc maximus, nulla ut commodo sagittis, sapien dui mattis dui, non pulvinar lorem felis nec erat
+                </article>
+            </section>
+            <section class="signup-form">
+                <h3>Quick sign up!</h3>
+                <form class="" action="">
+                  <div class="row">
+                    <div class="input-field col s12">
+                      <input id="email" type="email" class="validate" placeholder="username@example.com" required>
+                      <label for="email" data-error="wrong" data-success="right"></label>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="input-field col s12">
+                      <input id="username" type="text" class="validate" placeholder="Username" required>
+                      <label for="username" data-error="wrong" data-success="right"></label>
+                    </div>
+                </div>
+                <div class="row">
+                  <div class="input-field col s12">
+                    <input id="password" type="password" class="validate" placeholder="********" required>
+                    <label for="password" data-error="wrong" data-success="right"></label>
+                  </div>
+                </div>
+                <div class="switch">
+                    <label for="switch">By clicking the sign up button you agree to these <a href="terms.html">Terms & Conditions</a> </label></br>
+                  <label>
+                    No
+                    <input type="checkbox" required>
+                    <span class="lever"></span>
+                    Yes!
+                  </label>
+                </div>
+                <input type="submit" name="signup" value="SIGN UP" class="waves-effect waves-light signupbtn btn">
+                </form>
+            </section>
+        </div>
+        <footer class="page-footer">
+          <div class="container">
+            <div class="row">
+              <div class="col l6 s12">
+                <h5 class="white-text">WeConnect You Review It!</h5>
+                <p class="grey-text text-lighten-4">This project was made with love by <a href="https://www.github.com/JoshuaOndieki/">Joshua Ondieki</a>. With the help of <a href="https://www.andela.com/">Andela</a></p>
+              </div>
+              <div class="col l4 offset-l2 s12">
+                <h5 class="white-text">Links</h5>
+                <ul>
+                  <li><a class="grey-text text-lighten-3" href="terms.html">Terms & Conditions</a></li>
+                  <li><a class="grey-text text-lighten-3" href="faqs.html">FAQs</a></li>
+                  <li><a class="grey-text text-lighten-3" href="support.html">Support</a></li>
+                  <li><a class="grey-text text-lighten-3" href="#">API DOCS</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="footer-copyright">
+            <div class="container">
+            &copy; OJ&middot;2018
+            <a class="grey-text text-lighten-4 right" href="mailto:joshuaondieki8@gmail.com">Wanna get in touch with the developer?</a>
+            </div>
+          </div>
+        </footer>
+    </body>
+</html>
