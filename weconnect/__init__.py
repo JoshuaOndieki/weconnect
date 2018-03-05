@@ -1,6 +1,6 @@
 from flask import Flask
 from config import config
-from . import api
+from .api.v1.routes import v1
 
 
 database = {}  # multi dimentional dict storing application data in form of objects
@@ -15,5 +15,5 @@ def create_app(config_name):
     app.database = database
     app.config.from_object(config[config_name])
 
-    app.register_blueprint(api.v1, url_prefix="/v1")
+    app.register_blueprint(v1, url_prefix="api/v1")
     return app
