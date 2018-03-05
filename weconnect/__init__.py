@@ -3,7 +3,7 @@ from config import config
 from .api.v1.routes import v1
 
 
-database = {}  # multi dimentional dict storing application data in form of objects
+database = {}  # multi dimentional dict storing app data in form of objects
 
 
 def create_app(config_name):
