@@ -1,0 +1,42 @@
+main{
+    display: flex;
+    width: 99%;
+}
+
+
+#userprofile{
+    width: 40%;
+    margin: 2%;
+
+}
+
+#feed{
+    width: 60%;
+}
+
+.ownedbusiness{
+    width: 100%;
+}
+
+.card-title{
+    text-align: center;
+}
+
+.row{
+    clear: both;
+    width: 98%;
+}
+
+.review-item{
+    text-align: left;
+}
+
+
+.modal {
+    height: auto;
+    overflow-x: auto;
+}
+
+.modal-form-row {
+margin-bottom: 0px;
+}

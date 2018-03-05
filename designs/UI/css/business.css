@@ -1,0 +1,28 @@
+#results{
+    width: 90%;
+    margin: auto;
+}
+
+#results article{
+    width: 98%;
+    margin: auto;
+}
+
+.searchbar{
+    width: 80%;
+    background-color: white;
+    margin: auto;
+    margin-bottom: 1em;
+}
+
+.searchbar button{
+    right: 0;
+}
+
+.searchbar *{
+    display: flex;
+}
+
+.searchbar form button{
+    margin: auto;
+}
