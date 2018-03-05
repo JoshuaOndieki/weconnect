@@ -1,7 +1,7 @@
 # WeConnect ui
 This repo contains(currently) non-functional UI templates for the WeConnect project. A platform that brings businesses and individuals together. This platform creates awareness for businesses and gives the users the ability to write reviews about the businesses they have interacted with.  
 
-[![Maintainability](https://api.codeclimate.com/v1/badges/cc73c060a8797ec0099f/maintainability)](https://codeclimate.com/github/JoshuaOndieki/weconnect-ui/maintainability) [![Test Coverage](https://api.codeclimate.com/v1/badges/cc73c060a8797ec0099f/test_coverage)](https://codeclimate.com/github/JoshuaOndieki/weconnect-ui/test_coverage)
+[![Maintainability](https://api.codeclimate.com/v1/badges/cc73c060a8797ec0099f/maintainability)](https://codeclimate.com/github/JoshuaOndieki/weconnect-ui/maintainability) [![Coverage Status](https://coveralls.io/repos/github/JoshuaOndieki/weconnect/badge.svg?branch=master)](https://coveralls.io/github/JoshuaOndieki/weconnect?branch=master) [![Build Status](https://travis-ci.org/JoshuaOndieki/weconnect.svg?branch=master)](https://travis-ci.org/JoshuaOndieki/weconnect) [![Codacy Badge](https://api.codacy.com/project/badge/Grade/1cdd8a328b3a4ae3ab03854da7521aa9)](https://www.codacy.com/app/JoshuaOndieki/weconnect?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=JoshuaOndieki/weconnect&amp;utm_campaign=Badge_Grade)
 
 
 ## Motivation
