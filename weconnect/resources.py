@@ -43,7 +43,7 @@ class UserLogin(Resource):
         current_user = user.find_by_username(data['username'])
 
         if not current_user:
-            return {'message': 'User does not exist!'}
+            return {'message': 'User does not exist!'}, 404
         verified = user.login(data['username'], data['password'])
         if verified[0]:
             access_token = create_access_token(identity=data['username'])
@@ -53,7 +53,7 @@ class UserLogin(Resource):
                 'access_token': access_token,
                 'refresh_token': refresh_token
                 }
-        return {'message': 'Wrong username or password!'}
+        return {'message': 'Wrong username or password!'}, 401
 
 
 class UserLogout(Resource):
