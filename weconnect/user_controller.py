@@ -31,7 +31,9 @@ class UserController():
                 A tuple of (True, username) if success logging in user, (False, error) otherwise.
         """
 
-        pass
+        if username in app.database['Users'] and password is app.database['Users'][username][1]:
+            return (True, username)
+        return (False, 'Wrong username or password!')
 
     def find_by_username(self, username):
         try:

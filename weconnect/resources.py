@@ -39,7 +39,21 @@ class UserLogin(Resource):
                 Fail/existence:    {'message': 'User does not exist!'}
                 Fail/credentials: {'message': 'Wrong username or password!'}
         """
-        pass
+        data = parser.parse_args()
+        current_user = user.find_by_username(data['username'])
+
+        if not current_user:
+            return {'message': 'User does not exist!'}
+        verified = user.login(data['username'], data['password'])
+        if verified[0]:
+            access_token = create_access_token(identity=data['username'])
+            refresh_token = create_refresh_token(identity=data['username'])
+            return {
+                'message': 'Login successful!',
+                'access_token': access_token,
+                'refresh_token': refresh_token
+                }
+        return {'message': 'Wrong username or password!'}
 
 
 class UserLogout(Resource):
