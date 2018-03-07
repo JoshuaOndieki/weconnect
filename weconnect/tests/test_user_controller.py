@@ -1,5 +1,5 @@
 import unittest
-from weconnect.controllers.user_controller import UserController
+from weconnect.user_controller import UserController
 from weconnect import database
 
 

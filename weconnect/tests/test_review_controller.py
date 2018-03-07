@@ -1,5 +1,5 @@
 import unittest
-from weconnect.controllers.review_controller import ReviewController
+from weconnect.review_controller import ReviewController
 from weconnect import database
 
 
