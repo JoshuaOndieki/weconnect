@@ -15,4 +15,9 @@ class User():
             Returns:
                 Object
         """
-        pass
+        self.username = username
+        self.email = email
+        self.password = password
+
+    def credentials(self):
+        return [self.username, self.password]

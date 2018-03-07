@@ -1,5 +1,5 @@
 from weconnect.models.users import User
-from weconnect import database
+from flask import current_app as app
 
 
 class UserController():
@@ -14,7 +14,14 @@ class UserController():
                 A tuple of (True, username) if success adding user, (False, error) otherwise.
         """
 
-        pass
+        if app.database["Users"] and username in app.database["Users"]:
+            return (False, "User exists!")
+        new_user = User(username, email, password)
+        app.database["Users"][new_user.username] = new_user.credentials()
+        print("--------------------------")
+        print(app.database)
+        print("--------------------------")
+        return (True, new_user.username)
 
     def login(self, username, password):
         """
@@ -25,6 +32,13 @@ class UserController():
         """
 
         pass
+
+    def find_by_username(self, username):
+        try:
+            user = app.database["Users"][username]
+            return user
+        except KeyError:
+            return False
 
     def logout(self):
         """

@@ -1,4 +1,19 @@
-from flask_restful import Resource
+from flask_restful import Resource, reqparse
+from flask_jwt_extended import (create_access_token, create_refresh_token, jwt_required, jwt_refresh_token_required, get_jwt_identity, get_raw_jwt)
+
+from weconnect.user_controller import UserController
+from weconnect.business_controller import BusinessController
+from weconnect.review_controller import ReviewController
+
+
+parser = reqparse.RequestParser()
+parser.add_argument('username', help='This field cannot be blank', required=True)
+parser.add_argument('password', help='This field cannot be blank', required=True)
+parser.add_argument('email')
+
+user = UserController()
+business = BusinessController()
+review = ReviewController()
 
 
 class UserRegistration(Resource):
@@ -8,7 +23,12 @@ class UserRegistration(Resource):
                 Success: {'message': 'Registration successful!'}
                 Fail:    {'message': 'User exists!'}
         """
-        return {'message': 'User registration'}
+        data = parser.parse_args()
+        response = user.create_user(data['username'], data['email'], data['password'])
+        if response[0]:
+            return {'message': 'Registration successful!'}, 201
+        else:
+            return {'message': 'User exists!'}
 
 
 class UserLogin(Resource):
@@ -19,7 +39,7 @@ class UserLogin(Resource):
                 Fail/existence:    {'message': 'User does not exist!'}
                 Fail/credentials: {'message': 'Wrong username or password!'}
         """
-        return {'message': 'User login'}
+        pass
 
 
 class UserLogout(Resource):

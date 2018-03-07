@@ -1,5 +1,5 @@
 from weconnect.models.reviews import Review
-from weconnect import database
+from flask import current_app as app
 
 
 class ReviewController():

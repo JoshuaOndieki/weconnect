@@ -1,5 +1,5 @@
 from weconnect.models.businesses import Business
-from weconnect import database
+from flask import current_app as app
 
 
 class BusinessController():
