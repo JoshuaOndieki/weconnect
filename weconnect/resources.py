@@ -107,13 +107,22 @@ class TokenRefresh(Resource):
 
 
 class Business(Resource):
+    def __init__(self):
+        self.parser = reqparse.RequestParser()
+        self.parser.add_argument('name', help='This field cannot be blank', required=True)
+        self.parser.add_argument('location', help='This field cannot be blank', required=True)
+        self.parser.add_argument('category', help='This field cannot be blank', required=True)
 
     def get(self):
         self.businesses = business.retrieve_business()
         return self.businesses[1], 200
 
+    @jwt_required
     def post(self):
-        return {'message': 'Register Business'}
+        username = get_jwt_identity()
+        data = self.parser.parse_args()
+        self.response = business.create_business(data['name'], data['location'], data['category'], username)
+        return {'message': self.response[1]}
 
 
 class BusinessHandler(Resource):

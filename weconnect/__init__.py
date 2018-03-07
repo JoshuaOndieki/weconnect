@@ -47,7 +47,7 @@ def create_app(config_name):
     app.config['JWT_BLACKLIST_ENABLED'] = True
     app.config['JWT_BLACKLIST_TOKEN_CHECKS'] = ['access', 'refresh']
     app.jwt = JWTManager(app)
-    blacklist = set()
+    app.blacklist = set()
     # # For this example, we are just checking if the tokens jti
     # # (unique identifier) is in the blacklist set. This could
     # # be made more complex, for example storing all tokens
@@ -62,6 +62,6 @@ def create_app(config_name):
     @app.jwt.token_in_blacklist_loader
     def check_if_token_in_blacklist(decrypted_token):
         jti = decrypted_token['jti']
-        return jti in blacklist
+        return jti in app.blacklist
     app.register_blueprint(v1, url_prefix="/api/v1")
     return app

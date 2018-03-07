@@ -7,15 +7,24 @@ class BusinessController():
         Controls all CRUD operations of the Business object.
     """
 
-    def create_business(self, name, location, category):
+    def create_business(self, name, location, category, user_id):
         """
             Creates and adds a business to the app database.
 
             Returns:
                 A tuple of (True, name) if success adding business, (False, error) otherwise.
         """
-
-        pass
+        try:
+            ids = [x for x in app.database['Businesses'].keys()]
+            if ids:
+                business_id = max(ids) + 1
+            else:
+                business_id = 1
+            new_business = Business(business_id, name, location, category, user_id)
+            app.database['Businesses'][new_business.id] = new_business.details()
+            return (True, name)
+        except Exception as e:
+            return (False, str(e))
 
     def edit(self, business_id, name=None, location=None, category=None):
         """
