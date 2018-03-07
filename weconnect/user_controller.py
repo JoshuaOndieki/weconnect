@@ -29,11 +29,8 @@ class UserController():
                 A tuple of (True, username) if success logging in user, (False, error) otherwise.
         """
 
-        print(app.database['Users'][username][1])
         user_password = app.database['Users'][username][1]
-        print(password)
         if user_password == password:
-            print('return true')
             return (True, username)
         return (False, 'Wrong username or password!')
 
@@ -56,7 +53,6 @@ class UserController():
             return (True, 'Logout successful!')
         return (False, 'User was already logged out!')
 
-
     def password_reset(self, username, password, new_password):
         """
             Resets a user's password.
@@ -65,7 +61,11 @@ class UserController():
                 A tuple of (True, username) if success resetting user, (False, error) otherwise.
         """
 
-        if username in app.database['Users'] and password is app.database['Users'][username][1]:
+        try:
+            user_password = app.database['Users'][username][1]
+        except Exception as e:
+            return (False, str(e))
+        if user_password == password:
             # set new password
             app.database['Users'][username][1] = new_password
             return (True, 'Success resetting password!')
