@@ -6,24 +6,26 @@ from weconnect.business_controller import BusinessController
 from weconnect.review_controller import ReviewController
 
 
-parser = reqparse.RequestParser()
-parser.add_argument('username', help='This field cannot be blank', required=True)
-parser.add_argument('password', help='This field cannot be blank', required=True)
-parser.add_argument('email')
-
 user = UserController()
 business = BusinessController()
 review = ReviewController()
 
 
 class UserRegistration(Resource):
+
+    def __init__(self):
+        self.parser = reqparse.RequestParser()
+        self.parser.add_argument('username', help='This field cannot be blank', required=True)
+        self.parser.add_argument('password', help='This field cannot be blank', required=True)
+        self.parser.add_argument('email', help='This field cannot be blank', required=True)
+
     def post(self):
         """
             Returns:
                 Success: {'message': 'Registration successful!'}
                 Fail:    {'message': 'User exists!'}
         """
-        data = parser.parse_args()
+        data = self.parser.parse_args()
         response = user.create_user(data['username'], data['email'], data['password'])
         if response[0]:
             return {'message': 'Registration successful!'}, 201
@@ -32,14 +34,21 @@ class UserRegistration(Resource):
 
 
 class UserLogin(Resource):
+
+    def __init__(self):
+        self.parser = reqparse.RequestParser()
+        self.parser.add_argument('username', help='This field cannot be blank', required=True)
+        self.parser.add_argument('password', help='This field cannot be blank', required=True)
+
     def post(self):
         """
+            Usage: Login user and generate access token.
             Returns:
                 Success: {'message': 'Login successful!'}
                 Fail/existence:    {'message': 'User does not exist!'}
                 Fail/credentials: {'message': 'Wrong username or password!'}
         """
-        data = parser.parse_args()
+        data = self.parser.parse_args()
         current_user = user.find_by_username(data['username'])
 
         if not current_user:
@@ -57,8 +66,16 @@ class UserLogin(Resource):
 
 
 class UserLogout(Resource):
+
+    @jwt_required
     def post(self):
-        return {'message': 'User logout'}
+        """
+            Revokes a token and blacklists it.
+        """
+        token = get_raw_jwt()
+        self.response = user.logout(token)
+        if self.response:
+            return {'message': self.response[1]}
 
 
 class UserResetPassword(Resource):

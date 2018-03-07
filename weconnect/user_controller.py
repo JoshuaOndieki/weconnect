@@ -1,5 +1,6 @@
 from weconnect.models.users import User
 from flask import current_app as app
+import pdb
 
 
 class UserController():
@@ -18,9 +19,6 @@ class UserController():
             return (False, "User exists!")
         new_user = User(username, email, password)
         app.database["Users"][new_user.username] = new_user.credentials()
-        print("--------------------------")
-        print(app.database)
-        print("--------------------------")
         return (True, new_user.username)
 
     def login(self, username, password):
@@ -31,7 +29,11 @@ class UserController():
                 A tuple of (True, username) if success logging in user, (False, error) otherwise.
         """
 
-        if username in app.database['Users'] and password is app.database['Users'][username][1]:
+        print(app.database['Users'][username][1])
+        user_password = app.database['Users'][username][1]
+        print(password)
+        if user_password == password:
+            print('return true')
             return (True, username)
         return (False, 'Wrong username or password!')
 
@@ -42,25 +44,32 @@ class UserController():
         except KeyError:
             return False
 
-    def logout(self):
+    def logout(self, token):
         """
-            Logs out a user.
+            Logs out a user by adding access token to blacklist.
 
             Returns:
                 A tuple of (True) if success logging out user, (False, error) otherwise.
         """
+        if token not in app.database['log']['token_blacklist']:
+            app.database['log']['token_blacklist'].append(token)
+            return (True, 'Logout successful!')
+        return (False, 'User was already logged out!')
 
-        pass
 
-    def password_reset(self, username, email):
+    def password_reset(self, username, password, new_password):
         """
-            Resets a user's password by sending a reset code.
+            Resets a user's password.
 
             Returns:
-                A tuple of (True, username, reset_code) if success resetting user, (False, error) otherwise.
+                A tuple of (True, username) if success resetting user, (False, error) otherwise.
         """
 
-        pass
+        if username in app.database['Users'] and password is app.database['Users'][username][1]:
+            # set new password
+            app.database['Users'][username][1] = new_password
+            return (True, 'Success resetting password!')
+        return (False, 'Invalid credentials!')
 
     def delete_user(self, username):
         """

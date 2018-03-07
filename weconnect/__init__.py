@@ -4,11 +4,16 @@ from .api.v1.routes import v1
 from flask_jwt_extended import JWTManager
 
 
-database = {"log": {}, "Users": {}, "Businesses": {}, "Reviews": {}}  # multi dimentional dict storing app data in form of objects
+database = {"log": {'token_blacklist': []}, "Users": {}, "Businesses": {}, "Reviews": {}}  # multi dimentional dict storing app data in form of objects
 
 """
     ---------------------- DATA STRUCTURE -----------------
     {
+        log:
+            {
+                token_blacklist: []
+            }
+
         Users:
             {
                 userx: [email, password]
