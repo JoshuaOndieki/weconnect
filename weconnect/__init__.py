@@ -22,7 +22,7 @@ database = {"log": {'token_blacklist': []}, "Users": {}, "Businesses": {}, "Revi
 
         Businesses:
             {
-                bsx: [bsid, name, location, category, userid]
+                bsx: [name, location, category, userid]
                             ...
             }
 

@@ -1,6 +1,5 @@
 from weconnect.models.users import User
 from flask import current_app as app
-import pdb
 
 
 class UserController():

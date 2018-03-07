@@ -14,7 +14,7 @@ add(r.UserLogout, '/auth/logout')                   # POST
 add(r.UserResetPassword, '/auth/reset-password')    # POST
 
 # Business Routes
-add(r.Business, '/businesses/')                         # GET, POST
+add(r.Business, '/businesses')                         # GET, POST
 add(r.BusinessHandler, '/businesses/<int:businessId>')  # GET, PUT, DELETE
 
 # Review Routes
