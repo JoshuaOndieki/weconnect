@@ -4,6 +4,7 @@ coverage==4.5.1
 Flask==0.12.2
 Flask-JWT-Extended==3.7.1
 Flask-RESTful==0.3.6
+gunicorn==19.7.1
 itsdangerous==0.24
 Jinja2==2.10
 MarkupSafe==1.0
