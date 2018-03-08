@@ -1,12 +1,19 @@
 import unittest
 from weconnect.user_controller import UserController
 from weconnect import database
+from weconnect import create_app
 
 
 class TestUserController(unittest.TestCase):
 
     def setUp(self):
         self.user = UserController()
+        self.app = create_app(config_name='testing')
+        self.context = self.app.app_context()
+        self.context.push()
+
+    def tearDown(self):
+        self.context.pop()
 
     def test_creates_user(self):
         self.response = self.user.create_user("test_user", "test_user@email.com", "password")
