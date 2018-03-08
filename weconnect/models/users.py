@@ -20,4 +20,4 @@ class User():
         self.password = password
 
     def credentials(self):
-        return [self.username, self.password]
+        return [self.email, self.password]
