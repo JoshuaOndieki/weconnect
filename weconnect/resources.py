@@ -138,14 +138,19 @@ class BusinessHandler(Resource):
         self.response = business.get_business_by_id(data['id'])
         return self.response[1], 200
 
+    @jwt_required
     def put(self, businessId):
         data = self.parser.parse_args()
         data['id'] = businessId
         self.response = business.edit(data)
         return {'message': self.response[1]}, 201
 
+    @jwt_required
     def delete(self, businessId):
-        return {'message': 'Delete a specific business'}
+        username = get_jwt_identity()
+        self.response = business.delete_business(businessId, username)
+        if self.response:
+            return {'message': self.response[1]}
 
 
 class Reviews(Resource):

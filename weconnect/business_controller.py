@@ -76,7 +76,7 @@ class BusinessController():
             print(str(e))
             return (False, {'message': str(e)})
 
-    def delete_business(self, business_id):
+    def delete_business(self, business_id, user_id):
         """
             Removes a user from the database completely.
             Including related reviews.
@@ -85,4 +85,16 @@ class BusinessController():
                 A tuple of (True, success_message) if success deleting business, (False, error) otherwise.
         """
 
-        pass
+        try:
+            self.business = app.database['Businesses'][business_id]
+            if self.business[3] == user_id:
+                del app.database['Businesses'][business_id]
+                # Delete all related reviews.
+                all_reviews = app.database['Reviews']
+                business_reviews = [x for x in all_reviews if all_reviews[x][1] == business_id]
+                for i in business_reviews:
+                    del app.database['Reviews'][i]
+                return (True, 'Business deleted!')
+            return (False, 'Delete request denied!')
+        except Exception as e:
+            return (False, str(e))
