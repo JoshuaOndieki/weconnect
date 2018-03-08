@@ -45,7 +45,10 @@ class UserLogin(Resource):
         """
             Usage: Login user and generate access token.
             Returns:
-                Success: {'message': 'Login successful!'}
+                Success: {'message': 'Login successful!'
+                          'access_token': ''
+                          'refresh_token': ''
+                          }
                 Fail/existence:    {'message': 'User does not exist!'}
                 Fail/credentials: {'message': 'Wrong username or password!'}
         """
@@ -62,7 +65,7 @@ class UserLogin(Resource):
                 'message': 'Login successful!',
                 'access_token': access_token,
                 'refresh_token': refresh_token
-                }
+                }, 200
         return {'message': 'Wrong username or password!'}, 401
 
 
