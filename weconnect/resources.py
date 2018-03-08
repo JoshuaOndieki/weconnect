@@ -114,7 +114,7 @@ class Business(Resource):
         self.parser.add_argument('category', help='This field cannot be blank', required=True)
 
     def get(self):
-        self.businesses = business.retrieve_business()
+        self.businesses = business.get_businesses()
         return self.businesses[1], 200
 
     @jwt_required
@@ -126,11 +126,23 @@ class Business(Resource):
 
 
 class BusinessHandler(Resource):
+    def __init__(self):
+        self.parser = reqparse.RequestParser()
+        self.parser.add_argument('name', help='This field cannot be blank', required=True)
+        self.parser.add_argument('location', help='This field cannot be blank', required=True)
+        self.parser.add_argument('category', help='This field cannot be blank', required=True)
+
     def get(self, businessId):
-        return {'message': 'Get specific business'}
+        data = {}
+        data['id'] = businessId
+        self.response = business.get_business_by_id(data['id'])
+        return self.response[1], 200
 
     def put(self, businessId):
-        return {'message': 'Update specific business'}
+        data = self.parser.parse_args()
+        data['id'] = businessId
+        self.response = business.edit(data)
+        return {'message': self.response[1]}, 201
 
     def delete(self, businessId):
         return {'message': 'Delete a specific business'}
@@ -142,3 +154,8 @@ class Reviews(Resource):
 
     def post(self, businessId):
         return {'message': 'Create review for a business'}
+
+
+class All(Resource):
+    def get(self):
+        return app.database, 200
