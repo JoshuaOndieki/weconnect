@@ -7,6 +7,8 @@ v1 = Blueprint('v1', __name__)
 api = Api(v1)
 add = api.add_resource
 
+
+add(r.All, '/all')  # GET
 # User Routes
 add(r.UserRegistration, '/auth/register')           # POST
 add(r.UserLogin, '/auth/login')                     # POST
