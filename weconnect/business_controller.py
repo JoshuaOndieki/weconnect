@@ -53,7 +53,19 @@ class BusinessController():
             return (False, str(e))
 
     def get_businesses(self):
-        pass
+        """
+            Retrieves businesses. Filters if given filter options.
+
+            Returns:
+                A tuple of
+                (True, {business_id: [name, location, category, user_id]})
+                if success retrieving businesses,
+                (False, error) otherwise.
+        """
+        try:
+            return (True, app.database['Businesses'])
+        except Exception as e:
+            return (False, str(e))
 
     def get_business_by_id(self):
         pass
