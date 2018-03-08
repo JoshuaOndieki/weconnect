@@ -67,8 +67,14 @@ class BusinessController():
         except Exception as e:
             return (False, str(e))
 
-    def get_business_by_id(self):
-        pass
+    def get_business_by_id(self, id):
+        try:
+            business = app.database['Businesses'][id]
+            print(business)
+            return (True, {id: business})
+        except Exception as e:
+            print(str(e))
+            return (False, {'message': str(e)})
 
     def delete_business(self, business_id):
         """
