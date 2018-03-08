@@ -82,7 +82,7 @@ class BusinessController():
             Including related reviews.
 
             Returns:
-                A tuple of (True) if success deleting business, (False, error) otherwise.
+                A tuple of (True, success_message) if success deleting business, (False, error) otherwise.
         """
 
         pass
