@@ -154,11 +154,23 @@ class BusinessHandler(Resource):
 
 
 class Reviews(Resource):
-    def get(self, businessId):
-        return {'message': 'Retrieve reviews for a business'}
+    def __init__(self):
+        self.parser = reqparse.RequestParser()
+        self.parser.add_argument('content', help='This field cannot be blank', required=True)
 
+    def get(self, businessId):
+        self.response = review.retrieve_reviews(businessId)
+        if self.response[0]:
+            return {'message': self.response[1]}, 200
+        return {'message': self.response[1]}, 404
+
+    @jwt_required
     def post(self, businessId):
-        return {'message': 'Create review for a business'}
+        data = self.parser.parse_args()
+        content = data['content']
+        user_id = get_jwt_identity()
+        self.response = review.create_review(content, businessId, user_id)
+        return self.response[1], 200
 
 
 class All(Resource):

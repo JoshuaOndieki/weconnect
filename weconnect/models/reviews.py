@@ -16,4 +16,10 @@ class Review():
             Returns:
                 Object
         """
-        pass
+        self.id = review_id
+        self.content = content
+        self.business_id = business_id
+        self.user_id = user_id
+
+    def details(self):
+        return [self.content, self.business_id, self.user_id]

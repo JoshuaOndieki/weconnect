@@ -20,4 +20,4 @@ add(r.Business, '/businesses')                         # GET, POST
 add(r.BusinessHandler, '/businesses/<int:businessId>')  # GET, PUT, DELETE
 
 # Review Routes
-add(r.Reviews, '/businesses/<int:businessId>/review')   # GET, POST
+add(r.Reviews, '/businesses/<int:businessId>/reviews')   # GET, POST
