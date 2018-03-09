@@ -1,12 +1,18 @@
 import unittest
 from weconnect.business_controller import BusinessController
-from weconnect import database
+from weconnect import database, create_app
 
 
 class TestBusinessController(unittest.TestCase):
 
     def setUp(self):
         self.business = BusinessController()
+        self.app = create_app(config_name='testing')
+        self.context = self.app.app_context()
+        self.context.push()
+
+    def tearDown(self):
+        self.context.pop()
 
     def test_creates_business(self):
         database["Current user"] = "test_user"  # Manually login user

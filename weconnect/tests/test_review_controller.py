@@ -1,12 +1,18 @@
 import unittest
 from weconnect.review_controller import ReviewController
-from weconnect import database
+from weconnect import database, create_app
 
 
 class TestReviewController(unittest.TestCase):
 
     def setUp(self):
         self.review = ReviewController()
+        self.app = create_app(config_name='testing')
+        self.context = self.app.app_context()
+        self.context.push()
+
+    def tearDown(self):
+        self.context.pop()
 
     def test_create_review(self):
         database["Current user"] = "test_user"  # Manual login
