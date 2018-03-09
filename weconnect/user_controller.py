@@ -15,10 +15,16 @@ class UserController():
         """
 
         if app.database["Users"] and username in app.database["Users"]:
-            return (False, "User exists!")
+            return (False, "Username exists!")
+
+        # Get emails
+        emails = [x[0] for x in app.database['Users'].values()]
+        print(emails)
+        if app.database["Users"] and email in emails:
+            return (False, "Email exists!")
         new_user = User(username, email, password)
         app.database["Users"][new_user.username] = new_user.credentials()
-        return (True, new_user.username)
+        return (True, 'User creation successful!')
 
     def login(self, username, password):
         """
@@ -27,18 +33,20 @@ class UserController():
             Returns:
                 A tuple of (True, username) if success logging in user, (False, error) otherwise.
         """
-
-        user_password = app.database['Users'][username][1]
-        if user_password == password:
-            return (True, username)
-        return (False, 'Wrong username or password!')
+        try:
+            user_password = app.database['Users'][username][1]
+            if user_password == password:
+                return (True, 'User login success!')
+            return (False, 'Wrong password!')
+        except KeyError:
+            return (False, 'No such user!')
 
     def find_by_username(self, username):
         try:
             user = app.database["Users"][username]
-            return user
+            return (True, user)
         except KeyError:
-            return False
+            return (False,)
 
     # def logout(self, token):
     #     """
