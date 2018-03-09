@@ -15,24 +15,28 @@ class BusinessController():
                 A tuple of (True, name) if success adding business, (False, error) otherwise.
         """
         try:
-            ids = [x for x in app.database['Businesses'].keys()]
+            ids = [x for x in app.database['Businesses']]
             if ids:
                 business_id = max(ids) + 1
             else:
                 business_id = 1
             new_business = Business(business_id, name, location, category, user_id)
-            app.database['Businesses'][new_business.id] = new_business.details()
-            return (True, name)
+            if user_id in app.database['Users']:
+                app.database['Businesses'][new_business.id] = new_business.details()
+                return (True, 'Success adding business!')
+            else:
+                return (False, 'No such user!')
         except Exception as e:
-            return (False, str(e))
+                print(type(e), e)
+                return (False, '')
 
-    def edit(self, data):
+    def edit(self, business_id, name, location, category, user_id):
         """
             Edits and updates business info.
 
             Arguments:
                 data: A dictionary containing
-                        business_id, name, location, category
+                        business_id, name, location, category, user_id
 
             Returns:
                 A tuple of (True, name, location, category) if success
@@ -40,17 +44,19 @@ class BusinessController():
         """
 
         try:
-            if data['id'] in app.database['Businesses']:
+            business = app.database['Businesses'][business_id]
+            if business:
                 # Update business
-                business = app.database['Businesses'][data['id']]
-                business[0] = data['name']  # Update Name
-                business[1] = data['location']  # Update Location
-                business[2] = data['category']  # Update Category
-                app.database['Businesses'][data['id']] = business
+                business = app.database['Businesses'][business_id]
+                business[0] = name  # Update Name
+                business[1] = location  # Update Location
+                business[2] = category  # Update Category
+                app.database['Businesses'][business_id] = business
+                print('success')
                 return (True, 'Business update successful!')
+        except Exception:
+            print('fail')
             return (False, 'No business found with given id!')
-        except Exception as e:
-            return (False, str(e))
 
     def get_businesses(self):
         """
@@ -70,7 +76,6 @@ class BusinessController():
     def get_business_by_id(self, id):
         try:
             business = app.database['Businesses'][id]
-            print(business)
             return (True, {id: business})
         except Exception as e:
             print(str(e))

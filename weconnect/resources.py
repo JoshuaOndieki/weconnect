@@ -27,11 +27,8 @@ class UserRegistration(Resource):
                 Fail:    {'message': 'User exists!'}
         """
         data = self.parser.parse_args()
-        response = user.create_user(data['username'], data['email'], data['password'])
-        if response[0]:
-            return {'message': 'Registration successful!'}, 201
-        else:
-            return {'message': 'User exists!'}
+        self.response = user.create_user(data['username'], data['email'], data['password'])
+        return {'message': self.response[1]}, 201
 
 
 class UserLogin(Resource):
@@ -66,7 +63,7 @@ class UserLogin(Resource):
                 'access_token': access_token,
                 'refresh_token': refresh_token
                 }, 200
-        return {'message': 'Wrong username or password!'}, 401
+        return {'message': self.verified[1]}, 401
 
 
 class UserLogout(Resource):
