@@ -41,17 +41,17 @@ class UserController():
         except KeyError:
             return False
 
-    def logout(self, token):
-        """
-            Logs out a user by adding access token to blacklist.
-
-            Returns:
-                A tuple of (True) if success logging out user, (False, error) otherwise.
-        """
-        if token not in app.database['log']['token_blacklist']:
-            app.database['log']['token_blacklist'].append(token)
-            return (True, 'Logout successful!')
-        return (False, 'User was already logged out!')
+    # def logout(self, token):
+    #     """
+    #         Logs out a user by adding access token to blacklist.
+    #
+    #         Returns:
+    #             A tuple of (True) if success logging out user, (False, error) otherwise.
+    #     """
+    #     if token not in app.database['log']['token_blacklist']:
+    #         app.database['log']['token_blacklist'].append(token)
+    #         return (True, 'Logout successful!')
+    #     return (False, 'User was already logged out!')
 
     def password_reset(self, username, password, new_password):
         """
