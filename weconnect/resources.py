@@ -1,5 +1,7 @@
 from flask_restful import Resource, reqparse
-from flask_jwt_extended import (create_access_token, create_refresh_token, jwt_required, get_jwt_identity, get_raw_jwt)
+from flask_jwt_extended import (create_access_token,
+                                create_refresh_token, jwt_required,
+                                get_jwt_identity, get_raw_jwt)
 from flask import current_app as app
 
 from weconnect.user_controller import UserController
@@ -16,9 +18,15 @@ class UserRegistration(Resource):
 
     def __init__(self):
         self.parser = reqparse.RequestParser()
-        self.parser.add_argument('username', help='This field cannot be blank', required=True)
-        self.parser.add_argument('password', help='This field cannot be blank', required=True)
-        self.parser.add_argument('email', help='This field cannot be blank', required=True)
+        self.parser.add_argument('username',
+                                 help='This field cannot be blank',
+                                 required=True)
+        self.parser.add_argument('password',
+                                 help='This field cannot be blank',
+                                 required=True)
+        self.parser.add_argument('email',
+                                 help='This field cannot be blank',
+                                 required=True)
 
     def post(self):
         """
@@ -27,7 +35,8 @@ class UserRegistration(Resource):
                 Fail:    {'message': 'User exists!'}
         """
         data = self.parser.parse_args()
-        self.response = user.create_user(data['username'], data['email'], data['password'])
+        self.response = user.create_user(data['username'],
+                                         data['email'], data['password'])
         return {'message': self.response[1]}, 201
 
 
@@ -35,8 +44,12 @@ class UserLogin(Resource):
 
     def __init__(self):
         self.parser = reqparse.RequestParser()
-        self.parser.add_argument('username', help='This field cannot be blank', required=True)
-        self.parser.add_argument('password', help='This field cannot be blank', required=True)
+        self.parser.add_argument('username',
+                                 help='This field cannot be blank',
+                                 required=True)
+        self.parser.add_argument('password',
+                                 help='This field cannot be blank',
+                                 required=True)
 
     def post(self):
         """
@@ -81,14 +94,22 @@ class UserResetPassword(Resource):
 
     def __init__(self):
         self.parser = reqparse.RequestParser()
-        self.parser.add_argument('username', help='This field cannot be blank', required=True)
-        self.parser.add_argument('password', help='This field cannot be blank', required=True)
-        self.parser.add_argument('new_password', help='This field cannot be blank', required=True)
+        self.parser.add_argument('username',
+                                 help='This field cannot be blank',
+                                 required=True)
+        self.parser.add_argument('password',
+                                 help='This field cannot be blank',
+                                 required=True)
+        self.parser.add_argument('new_password',
+                                 help='This field cannot be blank',
+                                 required=True)
 
     @jwt_required
     def post(self):
         data = self.parser.parse_args()
-        self.response = user.password_reset(data['username'], data['password'], data['new_password'])
+        self.response = user.password_reset(data['username'],
+                                            data['password'],
+                                            data['new_password'])
         if self.response:
             return {'message': self.response[1]}
 
@@ -101,9 +122,15 @@ class TokenRefresh(Resource):
 class Business(Resource):
     def __init__(self):
         self.parser = reqparse.RequestParser()
-        self.parser.add_argument('name', help='This field cannot be blank', required=True)
-        self.parser.add_argument('location', help='This field cannot be blank', required=True)
-        self.parser.add_argument('category', help='This field cannot be blank', required=True)
+        self.parser.add_argument('name',
+                                 help='This field cannot be blank',
+                                 required=True)
+        self.parser.add_argument('location',
+                                 help='This field cannot be blank',
+                                 required=True)
+        self.parser.add_argument('category',
+                                 help='This field cannot be blank',
+                                 required=True)
 
     def get(self):
         self.businesses = business.get_businesses()
@@ -113,16 +140,25 @@ class Business(Resource):
     def post(self):
         username = get_jwt_identity()
         data = self.parser.parse_args()
-        self.response = business.create_business(data['name'], data['location'], data['category'], username)
+        self.response = business.create_business(data['name'],
+                                                 data['location'],
+                                                 data['category'],
+                                                 username)
         return {'message': self.response[1]}
 
 
 class BusinessHandler(Resource):
     def __init__(self):
         self.parser = reqparse.RequestParser()
-        self.parser.add_argument('name', help='This field cannot be blank', required=True)
-        self.parser.add_argument('location', help='This field cannot be blank', required=True)
-        self.parser.add_argument('category', help='This field cannot be blank', required=True)
+        self.parser.add_argument('name',
+                                 help='This field cannot be blank',
+                                 required=True)
+        self.parser.add_argument('location',
+                                 help='This field cannot be blank',
+                                 required=True)
+        self.parser.add_argument('category',
+                                 help='This field cannot be blank',
+                                 required=True)
 
     def get(self, businessId):
         self.response = business.get_business_by_id(businessId)
@@ -132,7 +168,11 @@ class BusinessHandler(Resource):
     def put(self, businessId):
         data = self.parser.parse_args()
         user_id = get_jwt_identity()
-        self.response = business.edit(businessId, data['name'], data['location'], data['category'], user_id)
+        self.response = business.edit(businessId,
+                                      data['name'],
+                                      data['location'],
+                                      data['category'],
+                                      user_id)
         return {'message': self.response[1]}, 201
 
     @jwt_required
@@ -146,7 +186,9 @@ class BusinessHandler(Resource):
 class Reviews(Resource):
     def __init__(self):
         self.parser = reqparse.RequestParser()
-        self.parser.add_argument('content', help='This field cannot be blank', required=True)
+        self.parser.add_argument('content',
+                                 help='This field cannot be blank',
+                                 required=True)
 
     def get(self, businessId):
         self.response = review.retrieve_reviews(businessId)

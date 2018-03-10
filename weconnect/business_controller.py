@@ -12,7 +12,8 @@ class BusinessController():
             Creates and adds a business to the app database.
 
             Returns:
-                A tuple of (True, name) if success adding business, (False, error) otherwise.
+                A tuple of (True, name) if success adding business,
+                (False, error) otherwise.
         """
         try:
             ids = [x for x in app.database['Businesses']]
@@ -20,9 +21,12 @@ class BusinessController():
                 business_id = max(ids) + 1
             else:
                 business_id = 1
-            self.new_business = Business(business_id, name, location, category, user_id)
+            self.new_business = Business(
+                                business_id, name,
+                                location, category, user_id)
             if user_id in app.database['Users']:
-                app.database['Businesses'][self.new_business.id] = self.new_business.details()
+                business_details = self.new_business.details()
+                app.database['Businesses'][business_id] = business_details
                 return (True, 'Success adding business!')
             else:
                 return (False, 'No such user!')
@@ -82,7 +86,9 @@ class BusinessController():
             Including related reviews.
 
             Returns:
-                A tuple of (True, success_message) if success deleting business, (False, error) otherwise.
+                A tuple of
+                (True, success_message) if success deleting business,
+                (False, error) otherwise.
         """
 
         try:
@@ -91,7 +97,8 @@ class BusinessController():
                 del app.database['Businesses'][business_id]
                 # Delete all related reviews.
                 all_reviews = app.database['Reviews']
-                business_reviews = [x for x in all_reviews if all_reviews[x][1] == business_id]
+                business_reviews = [x for x in all_reviews
+                                    if all_reviews[x][1] == business_id]
                 for i in business_reviews:
                     del app.database['Reviews'][i]
                 return (True, 'Business deleted!')

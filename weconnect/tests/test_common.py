@@ -1,5 +1,4 @@
 import unittest
-from weconnect.common import *
 
 
 # Just incase a testing library is not used!

@@ -22,4 +22,6 @@ class TestingConfig(Config):
     DEBUG = True
 
 
-config = {'development': DevelopmentConfig, 'testing': TestingConfig, 'production': ProductionConfig}
+config = {'development': DevelopmentConfig,
+          'testing': TestingConfig,
+          'production': ProductionConfig}

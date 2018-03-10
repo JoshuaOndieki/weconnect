@@ -1,3 +1,3 @@
 """
-    This module is responsible for all data validation.
+    This module is contains all reusable functions of the app.
 """

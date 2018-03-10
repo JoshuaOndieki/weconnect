@@ -81,7 +81,9 @@ class TestUserController(unittest.TestCase):
         self.user.create_user('forgetter',
                               'forgetter@email.com',
                               'oldpass')
-        self.response = self.user.password_reset('forgetter', 'oldpass', 'newpass')
+        self.response = self.user.password_reset(
+                        'forgetter',
+                        'oldpass', 'newpass')
         self.assertTrue(self.response[0], msg='')
 
 

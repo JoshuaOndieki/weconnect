@@ -15,7 +15,9 @@ class TestReviewController(unittest.TestCase):
         self.context = self.app.app_context()
         self.context.push()
 
-        self.business.create_business("Business Name", "bs, location", "bs cat", 'test_user')
+        self.business.create_business("Business Name",
+                                      "bs, location", "bs cat",
+                                      'test_user')
         self.user.create_user(
                             'test_user',
                             'test_user@email.com',
@@ -26,12 +28,15 @@ class TestReviewController(unittest.TestCase):
 
     def test_create_review(self):
         self.response = self.review.create_review("Review content", 1, 1)
-        self.assertTrue(self.response[0], msg="Should create a business review successfully!")
+        self.assertTrue(self.response[0],
+                        msg="Should create a business review successfully!")
 
     def test_retrieve_reviews_by_business_id(self):
         self.review.create_review("Review content", 1, 1)
         self.response = self.review.retrieve_reviews(1)
-        self.assertTrue(self.response[0], msg="Should retrieve reviews by business id correctly!")
+        self.assertTrue(self.response[0],
+                        msg="Should retrieve reviews by business id \
+                        correctly!")
 
 
 # Just incase a testing library is not used!

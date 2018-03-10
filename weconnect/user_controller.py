@@ -11,7 +11,8 @@ class UserController():
             Creates and adds user to the app database.
 
             Returns:
-                A tuple of (True, username) if success adding user, (False, error) otherwise.
+                A tuple of (True, username) if success adding user,
+                (False, error) otherwise.
         """
 
         if app.database["Users"] and username in app.database["Users"]:
@@ -22,7 +23,8 @@ class UserController():
         if app.database["Users"] and email in self.emails:
             return (False, "Email exists!")
         self.new_user = User(username, email, password)
-        app.database["Users"][self.new_user.username] = self.new_user.credentials()
+        user_details = self.new_user.credentials()
+        app.database["Users"][self.new_user.username] = user_details
         return (True, 'User creation successful!')
 
     def login(self, username, password):
@@ -30,7 +32,8 @@ class UserController():
             Authenticates and logs in a user.
 
             Returns:
-                A tuple of (True, username) if success logging in user, (False, error) otherwise.
+                A tuple of (True, username) if success logging in user,
+                (False, error) otherwise.
         """
         try:
             self.user_password = app.database['Users'][username][1]
@@ -52,7 +55,8 @@ class UserController():
             Resets a user's password.
 
             Returns:
-                A tuple of (True, username) if success resetting user, (False, error) otherwise.
+                A tuple of (True, username) if success resetting user,
+                (False, error) otherwise.
         """
 
         try:
@@ -71,7 +75,8 @@ class UserController():
             Including related businesses and reviews.
 
             Returns:
-                A tuple of (True) if success deleting user, (False, error) otherwise.
+                A tuple of (True) if success deleting user,
+                (False, error) otherwise.
         """
 
         pass
