@@ -1,5 +1,5 @@
 from flask_restful import Resource, reqparse
-from flask_jwt_extended import (create_access_token, create_refresh_token, jwt_required, jwt_refresh_token_required, get_jwt_identity, get_raw_jwt)
+from flask_jwt_extended import (create_access_token, create_refresh_token, jwt_required, get_jwt_identity, get_raw_jwt)
 from flask import current_app as app
 
 from weconnect.user_controller import UserController
@@ -27,11 +27,8 @@ class UserRegistration(Resource):
                 Fail:    {'message': 'User exists!'}
         """
         data = self.parser.parse_args()
-        response = user.create_user(data['username'], data['email'], data['password'])
-        if response[0]:
-            return {'message': 'Registration successful!'}, 201
-        else:
-            return {'message': 'User exists!'}
+        self.response = user.create_user(data['username'], data['email'], data['password'])
+        return {'message': self.response[1]}, 201
 
 
 class UserLogin(Resource):
@@ -53,20 +50,20 @@ class UserLogin(Resource):
                 Fail/credentials: {'message': 'Wrong username or password!'}
         """
         data = self.parser.parse_args()
-        current_user = user.find_by_username(data['username'])
+        self.current_user = user.find_by_username(data['username'])
 
-        if not current_user:
-            return {'message': 'User does not exist!'}, 404
-        verified = user.login(data['username'], data['password'])
-        if verified[0]:
+        if not self.current_user:
+            return {'message': 'No such user!'}, 404
+        self.verified = user.login(data['username'], data['password'])
+        if self.verified[0]:
             access_token = create_access_token(identity=data['username'])
             refresh_token = create_refresh_token(identity=data['username'])
             return {
-                'message': 'Login successful!',
+                'message': 'User login success!',
                 'access_token': access_token,
                 'refresh_token': refresh_token
                 }, 200
-        return {'message': 'Wrong username or password!'}, 401
+        return {'message': self.verified[1]}, 401
 
 
 class UserLogout(Resource):
@@ -76,13 +73,8 @@ class UserLogout(Resource):
         """
             Revokes a token and blacklists it.
         """
-        # token = get_raw_jwt()
         jti = get_raw_jwt()['jti']
         app.blacklist.add(jti)
-        print(app.blacklist)
-        # self.response = user.logout(token)
-        # if self.response:
-        #     return {'message': self.response[1]}
 
 
 class UserResetPassword(Resource):
@@ -96,9 +88,6 @@ class UserResetPassword(Resource):
     @jwt_required
     def post(self):
         data = self.parser.parse_args()
-        current_user = get_jwt_identity()
-        print('*******************************************')
-        print(current_user)
         self.response = user.password_reset(data['username'], data['password'], data['new_password'])
         if self.response:
             return {'message': self.response[1]}
@@ -136,16 +125,14 @@ class BusinessHandler(Resource):
         self.parser.add_argument('category', help='This field cannot be blank', required=True)
 
     def get(self, businessId):
-        data = {}
-        data['id'] = businessId
-        self.response = business.get_business_by_id(data['id'])
+        self.response = business.get_business_by_id(businessId)
         return self.response[1], 200
 
     @jwt_required
     def put(self, businessId):
         data = self.parser.parse_args()
-        data['id'] = businessId
-        self.response = business.edit(data)
+        user_id = get_jwt_identity()
+        self.response = business.edit(businessId, data['name'], data['location'], data['category'], user_id)
         return {'message': self.response[1]}, 201
 
     @jwt_required
@@ -173,9 +160,10 @@ class Reviews(Resource):
         content = data['content']
         user_id = get_jwt_identity()
         self.response = review.create_review(content, businessId, user_id)
-        return self.response[1], 200
+        return {'message': self.response[1]}, 201
 
 
 class All(Resource):
     def get(self):
-        return app.database, 200
+        self.database = app.database
+        return self.database, 200

@@ -4,16 +4,12 @@ from .api.v1.routes import v1
 from flask_jwt_extended import JWTManager
 
 
-database = {"log": {'token_blacklist': []}, "Users": {}, "Businesses": {}, "Reviews": {}}  # multi dimentional dict storing app data in form of objects
+# multi dimentional dict storing app data in form of objects
+database = {"Users": {}, "Businesses": {}, "Reviews": {}}
 
 """
     ---------------------- DATA STRUCTURE -----------------
     {
-        log:
-            {
-                token_blacklist: []
-            }
-
         Users:
             {
                 userx: [email, password]
@@ -48,17 +44,7 @@ def create_app(config_name):
     app.config['JWT_BLACKLIST_TOKEN_CHECKS'] = ['access', 'refresh']
     app.jwt = JWTManager(app)
     app.blacklist = set()
-    # # For this example, we are just checking if the tokens jti
-    # # (unique identifier) is in the blacklist set. This could
-    # # be made more complex, for example storing all tokens
-    # # into the blacklist with a revoked status when created,
-    # # and returning the revoked status in this call. This
-    # # would allow you to have a list of all created tokens,
-    # # and to consider tokens that aren't in the blacklist
-    # # (aka tokens you didn't create) as revoked. These are
-    # # just two options, and this can be tailored to whatever
-    # # your application needs.
-    #
+
     @app.jwt.token_in_blacklist_loader
     def check_if_token_in_blacklist(decrypted_token):
         jti = decrypted_token['jti']

@@ -35,7 +35,7 @@ class TestApiEndpoints(unittest.TestCase):
         data = {"username": "user1", "email": "user1@email.com", "password": "user1pass"}
         self.response = self.client().post('/api/v1/auth/register', data=data)
         result = json.loads(self.response.data.decode())
-        self.assertEqual(result['message'], "Registration successful!")
+        self.assertEqual(result['message'], "User creation successful!")
         self.assertEqual(self.response.status_code, 201)
 
     def test_does_not_allow_duplicate_registration(self):
@@ -45,15 +45,16 @@ class TestApiEndpoints(unittest.TestCase):
 
         self.response = self.client().post('/api/v1/auth/register', data=data)
         result = json.loads(self.response.data.decode())
-        self.assertEqual(result['message'], "User exists!")
-        self.assertEqual(self.response.status_code, 202)
+        self.assertEqual(result['message'], "Username exists!")
+        self.assertEqual(self.response.status_code, 201)
 
     def test_user_login_successful_with_matching_user_info(self):
-        data = {"username": "user1", "password": "user1pass"}
+        data = {"username": "loginuser", "email": "loginuser@email.com", "password": "luserpass"}
+        self.client().post('/api/v1/auth/register', data=data)
         self.response = self.client().post('/api/v1/auth/login', data=data)
         self.assertEqual(self.response.status_code, 200)
         result = json.loads(self.response.data.decode())
-        self.assertEqual(result['message'], "Login successful!")
+        self.assertEqual(result['message'], "User login success!")
         self.assertTrue(result['access_token'])
 
     def test_does_not_allow_non_user_login(self):
@@ -61,22 +62,25 @@ class TestApiEndpoints(unittest.TestCase):
         self.response = self.client().post('/api/v1/auth/login', data=data)
         self.assertEqual(self.response.status_code, 401)
         result = json.loads(self.response.data.decode())
-        self.assertEqual(result['message'], "User does not exist!")
+        self.assertEqual(result['message'], "No such user!")
 
     def test_does_not_allow_login_with_wrong_info(self):
-        data = {"username": "user1", "password": "guessed"}
+        data = {"username": "guessuser", "email": "guessuser@email.com", "password": "gpass"}
+        self.client().post('/api/v1/auth/register', data=data)
+        data = {"username": "guessuser", "password": "guessed"}
         self.response = self.client().post('/api/v1/auth/login', data=data)
         self.assertEqual(self.response.status_code, 401)
         result = json.loads(self.response.data.decode())
-        self.assertEqual(result['message'], "Wrong username or password!")
+        self.assertEqual(result['message'], "Wrong password!")
 
     def test_get_all_businesses(self):
         self.response = self.client().get('/api/v1/businesses')
         self.assertTrue(self.response.status_code is 200)
 
     def test_create_business(self):
-        data = {"username": "user1", "password": "user1pass"}
-        self.response = self.client().post('/api/v1/businesses', data=data)
+        data = {"username": "bsowner", "password": "bsopass", "email": "bsowner@email.com"}
+        self.client().post('/api/v1/auth/register', data=data)
+        self.response = self.client().post('/api/v1/auth/login', data=data)
         result = json.loads(self.response.data.decode())
         access_token = result['access_token']
         data = {'name': 'bs1', 'location': 'loc1', 'category': 'cat1'}
@@ -88,42 +92,47 @@ class TestApiEndpoints(unittest.TestCase):
         self.assertTrue(self.response.status_code is 200)
 
     def test_update_a_business(self):
-        data = {"username": "user1", "password": "user1pass"}
-        self.response = self.client().post('/api/v1/businesses', data=data)
+        data = {"username": "bsuser", "password": "bsuserpass"}
+        self.response = self.client().post('/api/v1/auth/login', data=data)
         result = json.loads(self.response.data.decode())
         access_token = result['access_token']
+        data = {'name': 'bs1', 'location': 'loc1', 'category': 'cat1'}
+        self.response = self.client().post('/api/v1/businesses', data=data, headers=dict(Authorization="Bearer " + access_token))
         data = {'name': 'updatedbs1', 'location': 'loc1', 'category': 'cat1'}
         self.response = self.client().put('/api/v1/businesses/1', data=data, headers=dict(Authorization="Bearer " + access_token))
         self.assertTrue(self.response.status_code is 201)
 
     def test_delete_a_business(self):
-        data = {"username": "user1", "password": "user1pass"}
-        self.response = self.client().post('/api/v1/businesses', data=data)
+        data = {"username": "bsuser", "email": "bsuser@email.com", "password": "bsuserpass"}
+        self.client().post('/api/v1/auth/register', data=data)
+        self.response = self.client().post('/api/v1/auth/login', data=data)
         result = json.loads(self.response.data.decode())
         access_token = result['access_token']
+        data = {"username": "user1", "password": "user1pass"}
+        self.response = self.client().post('/api/v1/businesses/1', data=data, headers=dict(Authorization="Bearer " + access_token))
         data = {'name': 'updatedbs1', 'location': 'loc1', 'category': 'cat1'}
         self.response = self.client().delete('/api/v1/businesses/1', data=data, headers=dict(Authorization="Bearer " + access_token))
 
+    def test_retrieve_business_reviews(self):
+        self.response = self.client().get('/api/v1/businesses/1/reviews')
+        self.assertTrue(self.response.status_code is 200)
+
     def test_create_business_review(self):
         # Create a user
-        data = {"username": "user2", "email": "user2@email.com", "password": "user2pass"}
-        self.response = self.client().post('/api/v1/auth/register', data=data)
+        data = {"username": "reviewer1", "email": "reviewer1@email.com", "password": "revpass"}
+        self.client().post('/api/v1/auth/register', data=data)
         # Login user
-        data = {"username": "user2", "password": "user2pass"}
+        data = {"username": "reviewer1", "password": "revpass"}
         self.response = self.client().post('/api/v1/auth/login', data=data)
         result = json.loads(self.response.data.decode())
         access_token = result['access_token']
         # Create a business
         data = {'name': 'bs1', 'location': 'loc1', 'category': 'cat3'}
-        self.response = self.client().post('/api/v1/businesses', data=data, headers=dict(Authorization="Bearer " + access_token))
+        self.client().post('/api/v1/businesses', data=data, headers=dict(Authorization="Bearer " + access_token))
 
         data = {'content': 'bs1 review'}
-        self.response = self.client().post('/api/v1/businesses/1/reviews', data=data)
+        self.response = self.client().post('/api/v1/businesses/1/reviews', data=data, headers=dict(Authorization="Bearer " + access_token))
         self.assertTrue(self.response.status_code is 201)
-
-    def test_retrieve_business_reviews(self):
-        self.response = self.client.get('/api/v1/businesses/1/reviews')
-        self.assertTrue(self.response.status_code is 200)
 
 
 # Just incase a testing library is not used!

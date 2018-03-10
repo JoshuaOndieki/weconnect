@@ -10,14 +10,14 @@ class Business():
             user_id: Username of the business creater.
     """
 
-    def __init__(self, id, name, location, category, user_id):
+    def __init__(self, business_id, name, location, category, user_id):
         """
             Business object initializer.
 
             Returns:
                 Object
         """
-        self.id = id
+        self.id = business_id
         self.name = name
         self.location = location
         self.category = category

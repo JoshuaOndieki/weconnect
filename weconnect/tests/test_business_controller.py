@@ -1,51 +1,52 @@
 import unittest
 from weconnect.business_controller import BusinessController
-from weconnect import database
+from weconnect.user_controller import UserController
+from weconnect import create_app
 
 
 class TestBusinessController(unittest.TestCase):
 
     def setUp(self):
         self.business = BusinessController()
+        self.user = UserController()
+        self.app = create_app(config_name='testing')
+        self.context = self.app.app_context()
+        self.context.push()
+
+        self.user.create_user(
+                            'test_user',
+                            'test_user@email.com',
+                            'password')
+
+    def tearDown(self):
+        self.context.pop()
 
     def test_creates_business(self):
-        database["Current user"] = "test_user"  # Manually login user
-        self.response = self.business.create_business("Business Name", "bs, location", "bs cat")
-        self.business.create_business("Business2 Name", "bs2, location", "bs2 cat")
-        self.businesses = [x for x in database["Businesses"].values()]
-        self.assertTrue(self.response[0] and ["Business Name", "bs, location", "bs cat"] in self.businesses, msg="Should add a business to the app database successfully!")
+        self.response = self.business.create_business("Business Name", "bs, location", "bs cat", 'test_user')
+        self.assertTrue(self.response[1] == 'Success adding business!', msg="Should add a business to the app database successfully!")
 
-    def test_does_not_create_business_without_login(self):
-        database["Current user"] = ""  # Manually logout user
-        self.response = self.business.create_business("Business1 Name", "bs1, location", "bs2 cat")
+    def test_does_not_create_business_with_non_user(self):
+        self.response = self.business.create_business("Business1 Name", "bs1, location", "bs2 cat", 'non_user')
         self.assertFalse(self.response[0], msg="Deny business creation if user not logged in!")
 
     def test_retrieve_all_businesses(self):
-        self.response = self.business.retrieve_business()
-        self.assertTrue(self.response[0] and len(self.response[1]) is not 0, "Should return a list of businesses!")
+        self.response = self.business.get_businesses()
+        self.assertTrue(self.response[0], "Should return a list of businesses!")
 
-    def test_retrieve_businesses_by_user(self):
-        self.response = self.business.retrieve_business(user_id="test_user")
-        self.assertNotEqual(self.response[1], 0, msg="Should return a list of businesses")
-        # business_user_ids = [x[4] for x in self.response[1]]
-        # ids_check = lambda l: all(x == l[0] for x in l)
-        # self.assertTrue(ids_check(business_user_ids))
+    def test_retrieve_businesses_by_id(self):
+        self.business.create_business("Business iName", "bs, location", "bs cat", 'test_user')
+        self.response = self.business.get_business_by_id(3)
+        self.assertTrue(self.response[0], msg="Should return a business by id")
 
     def test_update_business(self):
-        database["Current user"] = "test_user"  # Manual login
-        database["Businesses"][911] = ["Business Name not updated", "Bs, Location", "bs Cat", "test_user"]  # Manual add business
-        self.response = self.business.edit(business_id=911, name="Business Name updated", location="bs, Location", category="bs, Cat")
+        self.business.create_business("Business uName", "bs, location", "bs cat", 'test_user')
+        self.response = self.business.edit(3, "Business Name updated", "bs, Location", "bs, Cat", 'test_user')
         self.assertTrue(self.response[0], msg="Should update a business info!")
 
-    def test_can_not_delete_business_if_not_owner(self):
-        database["Current user"] = "fake_owner"
-        self.response = self.business.delete_business(911)
-        self.assertFalse(self.response[0], msg="Should allow only owners to delete the business!")
-
     def test_delete_a_business(self):
-        database["Current user"] = "test_user"
-        self.response = self.business.delete_business(911)
-        self.assertTrue(self.response[0] and 911 not in database["Businesses"].keys(), msg="Should delete a business from the database!")
+        self.business.create_business("Business2 Name", "bs2, location", "bs2 cat", 'test_user')
+        self.response = self.business.delete_business(1, 'test_user')
+        self.assertTrue(self.response[0], msg="Should delete a business from the database!")
 
 
 # Just incase a testing library is not used!
