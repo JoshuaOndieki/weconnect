@@ -20,9 +20,9 @@ class BusinessController():
                 business_id = max(ids) + 1
             else:
                 business_id = 1
-            new_business = Business(business_id, name, location, category, user_id)
+            self.new_business = Business(business_id, name, location, category, user_id)
             if user_id in app.database['Users']:
-                app.database['Businesses'][new_business.id] = new_business.details()
+                app.database['Businesses'][self.new_business.id] = self.new_business.details()
                 return (True, 'Success adding business!')
             else:
                 return (False, 'No such user!')
@@ -43,15 +43,13 @@ class BusinessController():
         """
 
         try:
-            business = app.database['Businesses'][business_id]
-            if business:
-                # Update business
-                business = app.database['Businesses'][business_id]
-                business[0] = name  # Update Name
-                business[1] = location  # Update Location
-                business[2] = category  # Update Category
-                app.database['Businesses'][business_id] = business
-                return (True, 'Business update successful!')
+            self.business = app.database['Businesses'][business_id]
+            # Update business
+            self.business[0] = name  # Update Name
+            self.business[1] = location  # Update Location
+            self.business[2] = category  # Update Category
+            app.database['Businesses'][business_id] = self.business
+            return (True, 'Business update successful!')
         except Exception:
             return (False, 'No business found with given id!')
 
@@ -66,14 +64,15 @@ class BusinessController():
                 (False, error) otherwise.
         """
         try:
-            return (True, app.database['Businesses'])
+            self.businesses = app.database['Businesses']
+            return (True, self.businesses)
         except Exception as e:
             return (False, str(type(e)))
 
-    def get_business_by_id(self, id):
+    def get_business_by_id(self, business_id):
         try:
-            business = app.database['Businesses'][id]
-            return (True, {id: business})
+            self.business = app.database['Businesses'][business_id]
+            return (True, {business_id: self.business})
         except Exception as e:
             return (False, {'message': str(type(e))})
 

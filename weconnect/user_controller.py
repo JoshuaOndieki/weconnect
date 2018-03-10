@@ -18,11 +18,11 @@ class UserController():
             return (False, "Username exists!")
 
         # Get emails
-        emails = [x[0] for x in app.database['Users'].values()]
-        if app.database["Users"] and email in emails:
+        self.emails = [x[0] for x in app.database['Users'].values()]
+        if app.database["Users"] and email in self.emails:
             return (False, "Email exists!")
-        new_user = User(username, email, password)
-        app.database["Users"][new_user.username] = new_user.credentials()
+        self.new_user = User(username, email, password)
+        app.database["Users"][self.new_user.username] = self.new_user.credentials()
         return (True, 'User creation successful!')
 
     def login(self, username, password):
@@ -33,8 +33,8 @@ class UserController():
                 A tuple of (True, username) if success logging in user, (False, error) otherwise.
         """
         try:
-            user_password = app.database['Users'][username][1]
-            if user_password == password:
+            self.user_password = app.database['Users'][username][1]
+            if self.user_password == password:
                 return (True, 'User login success!')
             return (False, 'Wrong password!')
         except KeyError:
@@ -42,8 +42,8 @@ class UserController():
 
     def find_by_username(self, username):
         try:
-            user = app.database["Users"][username]
-            return (True, user)
+            self.user = app.database["Users"][username]
+            return (True, self.user)
         except KeyError:
             return (False,)
 
@@ -56,10 +56,10 @@ class UserController():
         """
 
         try:
-            user_password = app.database['Users'][username][1]
+            self.user_password = app.database['Users'][username][1]
         except Exception as e:
             return (False, str(type(e)))
-        if user_password == password:
+        if self.user_password == password:
             # set new password
             app.database['Users'][username][1] = new_password
             return (True, 'Success resetting password!')

@@ -22,8 +22,8 @@ class ReviewController():
                 review_id = max(ids) + 1
             else:
                 review_id = 1
-            new_review = Review(review_id, content, business_id, user_id)
-            app.database['Reviews'][new_review.id] = new_review.details()
+            self.new_review = Review(review_id, content, business_id, user_id)
+            app.database['Reviews'][self.new_review.id] = self.new_review.details()
             return (True, "Added review successfully!")
         except Exception as e:
             return (False, str(type(e)))
@@ -37,8 +37,8 @@ class ReviewController():
         """
 
         all_reviews = app.database['Reviews']
-        business_reviews = [x for x in all_reviews if all_reviews[x][1] == business_id]
+        self.business_reviews = [x for x in all_reviews if all_reviews[x][1] == business_id]
         reviews = {}
-        for i in business_reviews:
+        for i in self.business_reviews:
             reviews[i] = app.database['Reviews'][i]
         return (True, reviews)

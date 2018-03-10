@@ -1,5 +1,5 @@
 from flask_restful import Resource, reqparse
-from flask_jwt_extended import (create_access_token, create_refresh_token, jwt_required, jwt_refresh_token_required, get_jwt_identity, get_raw_jwt)
+from flask_jwt_extended import (create_access_token, create_refresh_token, jwt_required, get_jwt_identity, get_raw_jwt)
 from flask import current_app as app
 
 from weconnect.user_controller import UserController
@@ -11,6 +11,11 @@ user = UserController()
 business = BusinessController()
 review = ReviewController()
 
+
+@app.jwt.token_in_blacklist_loader
+def check_if_token_in_blacklist(decrypted_token):
+    jti = decrypted_token['jti']
+    return jti in app.blacklist
 
 class UserRegistration(Resource):
 
@@ -50,9 +55,9 @@ class UserLogin(Resource):
                 Fail/credentials: {'message': 'Wrong username or password!'}
         """
         data = self.parser.parse_args()
-        current_user = user.find_by_username(data['username'])
+        self.current_user = user.find_by_username(data['username'])
 
-        if not current_user:
+        if not self.current_user:
             return {'message': 'No such user!'}, 404
         self.verified = user.login(data['username'], data['password'])
         if self.verified[0]:
@@ -88,7 +93,6 @@ class UserResetPassword(Resource):
     @jwt_required
     def post(self):
         data = self.parser.parse_args()
-        current_user = get_jwt_identity()
         self.response = user.password_reset(data['username'], data['password'], data['new_password'])
         if self.response:
             return {'message': self.response[1]}
@@ -126,7 +130,6 @@ class BusinessHandler(Resource):
         self.parser.add_argument('category', help='This field cannot be blank', required=True)
 
     def get(self, businessId):
-        data = {}
         self.response = business.get_business_by_id(businessId)
         return self.response[1], 200
 
@@ -167,4 +170,5 @@ class Reviews(Resource):
 
 class All(Resource):
     def get(self):
-        return app.database, 200
+        self.database = app.database
+        return self.database, 200

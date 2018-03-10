@@ -2,7 +2,7 @@ import unittest
 from weconnect.review_controller import ReviewController
 from weconnect.user_controller import UserController
 from weconnect.business_controller import BusinessController
-from weconnect import database, create_app
+from weconnect import create_app
 
 
 class TestReviewController(unittest.TestCase):
