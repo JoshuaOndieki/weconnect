@@ -114,11 +114,6 @@ class UserResetPassword(Resource):
             return {'message': self.response[1]}
 
 
-class TokenRefresh(Resource):
-    def post(self):
-        return {'message': 'Token refresh'}
-
-
 class Business(Resource):
     def __init__(self):
         self.parser = reqparse.RequestParser()
