@@ -132,7 +132,6 @@ class TestApiEndpoints(unittest.TestCase):
 
         data = {'content': 'bs1 review'}
         self.response = self.client().post('/api/v1/businesses/1/reviews', data=data, headers=dict(Authorization="Bearer " + access_token))
-        print(self.response.status_code)
         self.assertTrue(self.response.status_code is 201)
 
 

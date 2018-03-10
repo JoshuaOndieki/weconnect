@@ -73,13 +73,8 @@ class UserLogout(Resource):
         """
             Revokes a token and blacklists it.
         """
-        # token = get_raw_jwt()
         jti = get_raw_jwt()['jti']
         app.blacklist.add(jti)
-        print(app.blacklist)
-        # self.response = user.logout(token)
-        # if self.response:
-        #     return {'message': self.response[1]}
 
 
 class UserResetPassword(Resource):
@@ -94,8 +89,6 @@ class UserResetPassword(Resource):
     def post(self):
         data = self.parser.parse_args()
         current_user = get_jwt_identity()
-        print('*******************************************')
-        print(current_user)
         self.response = user.password_reset(data['username'], data['password'], data['new_password'])
         if self.response:
             return {'message': self.response[1]}

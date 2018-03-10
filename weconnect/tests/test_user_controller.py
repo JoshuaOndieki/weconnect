@@ -16,8 +16,8 @@ class TestUserController(unittest.TestCase):
 
     def test_creates_user(self):
         self.response = self.user.create_user(
-                                            'test_user',
-                                            'test_user@email.com',
+                                            'test_user0',
+                                            'test_user0@email.com',
                                             'password')
         self.assertTrue(self.response[1] == 'User creation successful!',
                         msg='Should return success msg if user is \
