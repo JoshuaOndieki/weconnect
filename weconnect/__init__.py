@@ -44,5 +44,10 @@ def create_app(config_name):
     app.config['JWT_BLACKLIST_TOKEN_CHECKS'] = ['access', 'refresh']
     app.jwt = JWTManager(app)
     app.blacklist = set()
+
+    @app.jwt.token_in_blacklist_loader
+    def check_if_token_in_blacklist(decrypted_token):
+        jti = decrypted_token['jti']
+        return jti in app.blacklist
     app.register_blueprint(v1, url_prefix="/api/v1")
     return app
