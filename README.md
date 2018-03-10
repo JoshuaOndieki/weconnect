@@ -24,7 +24,7 @@ Alternatively, clone this repo and test the UIs locally.
 6. Checkout the endpoints and test them with a tool like [POSTMAN](https://www.getpostman.com)
 
 #### Heroku
-This Flask API has been hosted to heroku at [Wecon](https://www.wecon.herokuapp.com)
+This Flask API has been hosted to heroku at [Wecon](https://wecon.herokuapp.com)
 
 ## API ENDPOINTS
 
