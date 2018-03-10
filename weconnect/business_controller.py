@@ -27,7 +27,7 @@ class BusinessController():
             else:
                 return (False, 'No such user!')
         except Exception as e:
-                return (False, type(e))
+                return (False, str(type(e)))
 
     def edit(self, business_id, name, location, category, user_id):
         """
@@ -68,14 +68,14 @@ class BusinessController():
         try:
             return (True, app.database['Businesses'])
         except Exception as e:
-            return (False, str(e))
+            return (False, str(type(e)))
 
     def get_business_by_id(self, id):
         try:
             business = app.database['Businesses'][id]
             return (True, {id: business})
         except Exception as e:
-            return (False, {'message': type(e)})
+            return (False, {'message': str(type(e))})
 
     def delete_business(self, business_id, user_id):
         """
@@ -98,4 +98,4 @@ class BusinessController():
                 return (True, 'Business deleted!')
             return (False, 'Delete request denied!')
         except Exception as e:
-            return (False, str(e))
+            return (False, str(type(e)))

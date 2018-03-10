@@ -162,7 +162,7 @@ class Reviews(Resource):
         content = data['content']
         user_id = get_jwt_identity()
         self.response = review.create_review(content, businessId, user_id)
-        return self.response[1], 201
+        return {'message': self.response[1]}, 201
 
 
 class All(Resource):

@@ -26,7 +26,7 @@ class ReviewController():
             app.database['Reviews'][new_review.id] = new_review.details()
             return (True, "Added review successfully!")
         except Exception as e:
-            return (False, str(e))
+            return (False, str(type(e)))
 
     def retrieve_reviews(self, business_id):
         """

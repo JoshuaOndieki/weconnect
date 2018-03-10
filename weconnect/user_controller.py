@@ -70,7 +70,7 @@ class UserController():
         try:
             user_password = app.database['Users'][username][1]
         except Exception as e:
-            return (False, str(e))
+            return (False, str(type(e)))
         if user_password == password:
             # set new password
             app.database['Users'][username][1] = new_password
