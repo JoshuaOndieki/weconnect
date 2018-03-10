@@ -73,8 +73,8 @@ class UserLogout(Resource):
         """
             Revokes a token and blacklists it.
         """
-        jti = get_raw_jwt()['jti']
-        app.blacklist.add(jti)
+        self.jti = get_raw_jwt()['jti']
+        app.blacklist.add(self.jti)
 
 
 class UserResetPassword(Resource):
