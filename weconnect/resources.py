@@ -53,13 +53,13 @@ class UserLogin(Resource):
         current_user = user.find_by_username(data['username'])
 
         if not current_user:
-            return {'message': 'User does not exist!'}, 404
-        verified = user.login(data['username'], data['password'])
-        if verified[0]:
+            return {'message': 'No such user!'}, 404
+        self.verified = user.login(data['username'], data['password'])
+        if self.verified[0]:
             access_token = create_access_token(identity=data['username'])
             refresh_token = create_refresh_token(identity=data['username'])
             return {
-                'message': 'Login successful!',
+                'message': 'User login success!',
                 'access_token': access_token,
                 'refresh_token': refresh_token
                 }, 200
@@ -134,15 +134,14 @@ class BusinessHandler(Resource):
 
     def get(self, businessId):
         data = {}
-        data['id'] = businessId
-        self.response = business.get_business_by_id(data['id'])
+        self.response = business.get_business_by_id(businessId)
         return self.response[1], 200
 
     @jwt_required
     def put(self, businessId):
         data = self.parser.parse_args()
-        data['id'] = businessId
-        self.response = business.edit(data)
+        user_id = get_jwt_identity()
+        self.response = business.edit(businessId, data['name'], data['location'], data['category'], user_id)
         return {'message': self.response[1]}, 201
 
     @jwt_required
@@ -170,7 +169,7 @@ class Reviews(Resource):
         content = data['content']
         user_id = get_jwt_identity()
         self.response = review.create_review(content, businessId, user_id)
-        return self.response[1], 200
+        return self.response[1], 201
 
 
 class All(Resource):

@@ -19,7 +19,6 @@ class UserController():
 
         # Get emails
         emails = [x[0] for x in app.database['Users'].values()]
-        print(emails)
         if app.database["Users"] and email in emails:
             return (False, "Email exists!")
         new_user = User(username, email, password)
